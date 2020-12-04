@@ -425,8 +425,8 @@ class _JourneyPageState extends State<JourneyPage>
     double wunit = MediaQuery
         .of(context)
         .size
-        .width / 6 - size / 2;
-    double hunit = 300 / 12 - size / 2;
+        .width / 6;
+    double hunit = 300 / 12 ;
     return Positioned(
       left: left * wunit,
       top: right * hunit,
@@ -455,26 +455,22 @@ class _JourneyPageState extends State<JourneyPage>
   String doingDot = 'doingDot.png';
 
   List<Widget> thinkaboutlater(int index) {
-    // List<List<double>> twoDList = [[]];
-    // // List.generate(
-    // //     12, (i) => List(2), growable: false);
-    //
-    // twoDList[0] = [-0.25, 0];
-    // twoDList[1] = [0.3, 2.5];
-    // twoDList[2] = [1.3, 3.7];
-    // twoDList[3] = [2.5, 4.0];
-    // twoDList[4] = [3.65, 4.3];
-    // twoDList[5] = [4.6, 5.4];
-    // twoDList[6] = [5.05, 7.6];
-    // twoDList[7] = [4.6, 9.5];
-    // twoDList[8] = [3.65, 10.6];
-    // twoDList[9] = [2.5, 10.9];
-    // twoDList[10] = [1.3, 11.2];
-    // twoDList[11] = [0.3, 12.5];
+    List<List> twoDList =  List.generate(12, (_) => new List(2));
+    twoDList[0] = [-0.200, -0.40];
+    twoDList[1] = [0.3, 1.5];
+    twoDList[2] = [1.2, 2.2];
+    twoDList[3] = [2.3, 2.5];
+    twoDList[4] = [3.3, 2.6];
+    twoDList[5] = [4.2, 2.6];
+    twoDList[6] = [4.9, 4.1];
+    twoDList[7] = [4.2, 5.9];
+    twoDList[8] = [3.2, 6.1];
+    twoDList[9] = [2.3, 6.3];
+    twoDList[10] = [1.4, 6.4];
+    twoDList[11] = [0.3, 7.4];
     index = 12 * index;
     double dotSize;
     String img;
-    int k = index % 12;
     List<Widget> widgetList = [];
     widgetList.add(SizedBox(
       width: MediaQuery
@@ -488,23 +484,20 @@ class _JourneyPageState extends State<JourneyPage>
     ),);
     for (int j = 0; j < 12; j++) {
       if (dots[index].dotType == Type.DAILY) {
-        dotSize = 20;
+        dotSize = 30;
         img = 'lock.png';
       } else if (dots[index].dotType == Type.WEEKLY) {
-        dotSize = 30;
+        dotSize = 40;
         img = 'star.png';
       } else if (dots[index].dotType == Type.TIER) {
-        dotSize = 30;
+        dotSize = 40;
         img = 'star.png';
       }
       index ++;
-      widgetList.add(buildDots(2.5,2.5, dotSize, img));
+      widgetList.add(buildDots(twoDList[j][0],twoDList[j][1], dotSize, img));
     // }
   }
-    print(widgetList.length);
 return widgetList;
-
-
 }}
 
 
