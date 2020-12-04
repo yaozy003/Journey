@@ -1,0 +1,1564 @@
+{
+  "dots_amount": 110,
+  "dots": [
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "day": "2020-02-05",
+      "reps": 90,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "day": "2020-02-07",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "START HERE!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "goals_per_week": 2,
+      "rewarded_days": 2
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "day": "2020-02-11",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "day": "2020-02-14",
+      "reps": 80,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "1 WEEK DOWN. GOOD JOB!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "goals_per_week": 2,
+      "rewarded_days": 2
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "day": "2020-02-17",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "day": "2020-02-20",
+      "reps": 95,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "KEEP IT UP!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "goals_per_week": 2,
+      "rewarded_days": 2
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "day": "2020-02-24",
+      "reps": 115,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "2.5"
+        }
+      ],
+      "day": "2020-02-27",
+      "reps": 125,
+      "future": false
+    },
+    {
+      "dot_type": "tier",
+      "status": "tick",
+      "future": false,
+      "body": "YOUR BONUS IS WAITING!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "2.5"
+        }
+      ],
+      "goals_per_week": 2,
+      "rewarded_days": 2
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "day": "2020-03-02",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "day": "2020-03-04",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "day": "2020-03-08",
+      "reps": 90,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "TIER 2 STARTS HERE!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "goals_per_week": 3,
+      "rewarded_days": 3
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "day": "2020-03-10",
+      "reps": 85,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "day": "2020-03-12",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "day": "2020-03-14",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "ANOTHER WEEK DOWN!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "goals_per_week": 3,
+      "rewarded_days": 3
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "day": "2020-03-17",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "day": "2020-03-19",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "day": "2020-03-21",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "PERFECT!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "goals_per_week": 3,
+      "rewarded_days": 3
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "day": "2020-03-24",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "day": "2020-03-25",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "3.75"
+        }
+      ],
+      "day": "2020-03-27",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "tier",
+      "status": "tick",
+      "future": false,
+      "body": "YOUR BONUS IS WAITING!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "3.75"
+        }
+      ],
+      "goals_per_week": 3,
+      "rewarded_days": 3
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-03-31",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-01",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-03",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "day": "2020-04-05",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "TIER 3 STARTS HERE!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 4
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-07",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-09",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-10",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "day": "2020-04-11",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "YOU'RE DOING GOOD!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 4
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-13",
+      "reps": 95,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-14",
+      "reps": 110,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-16",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "day": "2020-04-19",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "tick",
+      "future": false,
+      "body": "ALMOST THERE!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 4
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-21",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-23",
+      "reps": 100,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "day": "2020-04-24",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "tick",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "2.5"
+        }
+      ],
+      "day": "2020-04-26",
+      "reps": 120,
+      "future": false
+    },
+    {
+      "dot_type": "tier",
+      "status": "tick",
+      "future": false,
+      "body": "YOUR BONUS IS WAITING!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "5.0"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 4
+    },
+    {
+      "dot_type": "daily",
+      "status": "current_lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "next_week_start_on": "2020-04-27",
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "reps": 80,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "reps": 80,
+      "future": false
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "reps": 80,
+      "future": false
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": false,
+      "body": "START HERE!!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "goals_per_week": 3,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "1 WEEK DOWN. GOOD JOB!!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "goals_per_week": 3,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "KEEP IT UP!!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        }
+      ],
+      "goals_per_week": 3,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.1"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "2.5"
+        }
+      ],
+      "reps": 80,
+      "future": true
+    },
+    {
+      "dot_type": "tier",
+      "status": "lock",
+      "future": true,
+      "body": "YOUR BONUS IS WAITING!!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.3"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "2.5"
+        }
+      ],
+      "goals_per_week": 3,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "TIER 2 STARTS HERE!!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "ANOTHER WEEK DOWN!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "PERFECT!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.15"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "3.75"
+        }
+      ],
+      "reps": 150,
+      "future": true
+    },
+    {
+      "dot_type": "tier",
+      "status": "lock",
+      "future": true,
+      "body": "YOUR BONUS IS WAITING!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.45"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "3.75"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "TIER 3 STARTS HERE!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "YOU'RE DOING GOOD!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "ALMOST THERE!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "5.0"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "tier",
+      "status": "lock",
+      "future": true,
+      "body": "YOUR BONUS IS WAITING!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        },
+        {
+          "reward_type": "tier",
+          "amount": "5.0"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    },
+    {
+      "dot_type": "weekly",
+      "status": "lock",
+      "future": true,
+      "body": "ALMOST THERE!",
+      "reward": [
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "goals_per_week": 4,
+      "rewarded_days": 0
+    },
+    {
+      "dot_type": "daily",
+      "status": "lock",
+      "reward": [
+        {
+          "reward_type": "daily",
+          "amount": "0.2"
+        },
+        {
+          "reward_type": "weekly",
+          "amount": "0.6"
+        }
+      ],
+      "reps": 250,
+      "future": true
+    }
+  ]
+}
