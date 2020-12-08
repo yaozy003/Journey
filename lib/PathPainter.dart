@@ -1,8 +1,14 @@
 
+//TODO：根据json数据 画好断开的虚线。
 import 'package:flutter/material.dart';
+import 'models/map_dots.dart';
 
 class PathPainter extends CustomPainter {
-  int dots = 8;
+
+  final List<Dot> dots ;
+  PathPainter(this.dots);
+  
+  int number = 8;
   List<Point> dotPoints = [];
   List<Point> allPoints = [];
   double x0, y0, x1, y1, x2, y2, x3, y3;
@@ -11,13 +17,13 @@ class PathPainter extends CustomPainter {
     double wunit = size.width / 6;
     double hunit = size.height / 12;
     Paint paint = Paint()
-      ..color = Colors.white
+      ..color = Colors.white70
       ..style = PaintingStyle.stroke
       ..isAntiAlias = true
       ..strokeWidth = 14.0;
     Path path = Path();
     //
-    dotPoints.add(Point(0, 0));//1
+    dotPoints.add(Point(0.15* wunit, 0));//1
     dotPoints.add(Point(0.5 * wunit, 2.5 * hunit));//control point 0.5
     dotPoints.add(Point(1.0 * wunit, 3 * hunit));//1
 
@@ -63,7 +69,7 @@ class PathPainter extends CustomPainter {
 
     dotPoints.add(Point(1 * wunit, 9 * hunit));//11
     dotPoints.add(Point(0.5 * wunit,  9.5 * hunit)); //control point 11.5
-    dotPoints.add(Point(0 * wunit, 12 * hunit));//12
+    dotPoints.add(Point(0.15 * wunit, 12 * hunit));//12
 
 
     for (int i = 0; i < dotPoints.length; i++) {

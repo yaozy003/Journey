@@ -39,6 +39,7 @@ flutter:
 
   assets:
    - assets/images/
+   - assets/images/BottomNavi/
    - assets/journeyMap.json
 
 
