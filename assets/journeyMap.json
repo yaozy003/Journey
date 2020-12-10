@@ -16,7 +16,7 @@
     },
     {
       "dot_type": "daily",
-      "status": "tick",
+      "status": "undone",
       "reward": [
         {
           "reward_type": "daily",

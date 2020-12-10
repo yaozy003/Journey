@@ -108,12 +108,13 @@ class Reward {
   };
 }
 
-enum Status { TICK, CURRENT_LOCK, LOCK }
+enum Status { TICK, CURRENT_LOCK, LOCK,UNDONE }
 
 final statusValues = EnumValues({
   "current_lock": Status.CURRENT_LOCK,
   "lock": Status.LOCK,
-  "tick": Status.TICK
+  "tick": Status.TICK,
+  "fail":Status.UNDONE,
 });
 
 class EnumValues<T> {
