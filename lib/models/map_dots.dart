@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 MapDots mapDotsFromJson(String str) => MapDots.fromJson(json.decode(str));
 
 String mapDotsToJson(MapDots data) => json.encode(data.toJson());
@@ -30,7 +32,7 @@ class MapDots {
 
 class Dot {
   Dot({
-    this.dotType,
+    @required this.dotType,
     this.status,
     this.reward,
     this.day,
@@ -80,12 +82,13 @@ class Dot {
   };
 }
 
-enum Type { DAILY, WEEKLY, TIER }
+enum Type { DAILY, WEEKLY, TIER,MAKEUP}
 
 final typeValues = EnumValues({
   "daily": Type.DAILY,
   "tier": Type.TIER,
   "weekly": Type.WEEKLY
+  // MAKEUP is not from JSON data.
 });
 
 class Reward {
@@ -114,7 +117,7 @@ final statusValues = EnumValues({
   "current_lock": Status.CURRENT_LOCK,
   "lock": Status.LOCK,
   "tick": Status.TICK,
-  "fail":Status.UNDONE,
+  "undone":Status.UNDONE,
 });
 
 class EnumValues<T> {

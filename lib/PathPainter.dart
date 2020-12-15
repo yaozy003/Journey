@@ -1,11 +1,11 @@
 //TODO：根据json数据 画好断开的虚线。
 import 'package:flutter/material.dart';
 import 'models/map_dots.dart';
+import 'package:path_drawing/path_drawing.dart';
 
 class PathPainter extends CustomPainter {
   final List<Dot> dots;
-
-  int index;
+  final int index;
 
   PathPainter(this.dots, this.index);
 
@@ -14,18 +14,17 @@ class PathPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    int count = index;
     double wunit = size.width / 6;
     double hunit = size.height / 12;
     Paint paint = Paint()
       ..color = Colors.white
       ..style = PaintingStyle.stroke
-      ..isAntiAlias = true
       ..strokeWidth = 14.0;
 
     Paint dashPaint = Paint()
       ..color = Colors.yellow
       ..style = PaintingStyle.stroke
-      ..isAntiAlias = true
       ..strokeWidth = 14.0;
     Path path = Path();
     //
@@ -75,19 +74,20 @@ class PathPainter extends CustomPainter {
 
     dotPoints.add(Point(0.45 * wunit, 9.1 * hunit)); //11
     dotPoints.add(Point(0.1 * wunit, 10.2 * hunit)); //control point 11.5
-    dotPoints.add(Point(-0.1 * wunit, 12 * hunit)); //12
+    dotPoints.add(Point(-0.1 * wunit, 12.4 * hunit)); //12
 
-// //find index
-//     int temp = 0;
-//     bool first = true;
-//     for (int j = 0; j < 12; j++) {
-//       if (first && dots[index].future == true) {
-//         temp = index;
-//         first = false;
-//         break;
-//       }
-//     }
-//     print(temp);
+//find index
+    int temp = 0;
+    bool found = false;
+    for (int j = 0; j < dots.length; j++) {
+      if (dots[j].status == Status.CURRENT_LOCK) {
+        found = true;
+      }
+      if (found && dots[j].dotType == Type.WEEKLY) {
+        temp = j;
+        break;
+      }
+    }
 
     for (int i = 0; i < dotPoints.length; i++) {
       if (i % 3 == 0) {
@@ -106,23 +106,36 @@ class PathPainter extends CustomPainter {
           x2,
           y2,
         );
-        if (index < dots.length) {
-          // if(dots[index].status == Status.CURRENT_LOCK){
-          //   dots[index].future = false;
-          // }
-          if (dots[index].future != true) {
-            canvas.drawPath(path, paint);
-            index++;
-          } else if (dots[index].future != false) {
-            canvas.drawPath(path, dashPaint);
-            index++;
-          }
+        Path p = Path()
+          ..moveTo(10.0, 10.0)
+          ..lineTo(100.0, 100.0)
+          ..quadraticBezierTo(125.0, 20.0, 200.0, 100.0);
+
+        if (count < dots.length  &&
+            dots[count].status == Status.UNDONE) {
+          print("helo");
+          canvas.drawPath(
+              dashPath(
+                path,
+                dashArray: CircularIntervalList<double>(
+                  <double>[5.0, 2.5],
+                ),
+              ),
+              paint);
+        }else {
+          canvas.drawPath(path, paint);
         }
       }
+      //if (count < dots.length) {
+      //   if(count < 52){
+      //     canvas.drawPath(path, paint);
+      //   } else {
+      //     canvas.drawPath(path, dashPaint);
+      //   }
+      //   count ++;
+      // }
     }
   }
-
-  //canvas.drawPath(path, dashPaint);
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;

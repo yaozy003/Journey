@@ -720,7 +720,7 @@
       ],
       "next_week_start_on": "2020-04-27",
       "reps": 80,
-      "future": true
+      "future": false
     },
     {
       "dot_type": "daily",

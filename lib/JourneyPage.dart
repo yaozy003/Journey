@@ -19,7 +19,6 @@ class _JourneyPageState extends State<JourneyPage>
     with SingleTickerProviderStateMixin {
   List<Dot> _dots = [];
   int didReps = 0;
-
   int totalReps = 0;
   int coins = 0;
 
@@ -29,9 +28,7 @@ class _JourneyPageState extends State<JourneyPage>
 
   Future<List<Dot>> loadJsonData() async {
     String jsonString = await rootBundle.loadString('assets/journeyMap.json');
-    //await wait(10);
     Map<String, dynamic> data = json.decode(jsonString);
-    //Dot dot = await MapDots.fromJson(data).dots;
     return MapDots.fromJson(data).dots;
   }
 
@@ -41,6 +38,12 @@ class _JourneyPageState extends State<JourneyPage>
     super.initState();
     this.loadJsonData().then((d) => setState(() {
           _dots = d;
+          //make dots amount is multiples of 12
+          int makeUpAmount = 12 - (_dots.length % 12);
+          for (int i = 0; i < makeUpAmount; i++) {
+            _dots.add(Dot(dotType: Type.MAKEUP));
+            print(i);
+          }
           _loaded = true;
         }));
     _animationController = AnimationController(
@@ -49,20 +52,21 @@ class _JourneyPageState extends State<JourneyPage>
           milliseconds: 1000,
         ),
         value: 1.0);
-    _doubleAnim =
-        Tween(begin: 0.80000, end: 1.150000).animate(_animationController)
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              //动画在结束时停止的状态
-              _animationController.reverse(); //颠倒
-            } else if (status == AnimationStatus.dismissed) {
-              //动画在开始时就停止的状态
-              _animationController.forward(); //向前
-            }
-          });
-    // ..addListener(() {
-    //   setState(() {});
-    // });
+    _doubleAnim = Tween(begin: 0.9, end: 1.10).animate(_animationController)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          //动画在结束时停止的状态
+          _animationController.reverse(); //颠倒
+        } else if (status == AnimationStatus.dismissed) {
+          //动画在开始时就停止的状态
+          _animationController.forward(); //向前
+
+        }
+      })
+      ..addListener(() {
+        // setState(() {
+        // });
+      });
     _animationController.forward();
   }
 
@@ -120,7 +124,7 @@ class _JourneyPageState extends State<JourneyPage>
               Expanded(
                 child: SingleChildScrollView(
                     child: SizedBox(
-                  height: 3 * height,
+                  height: 3.3* height,
                   width: double.infinity,
                   child: Column(children: [
                     Expanded(
@@ -231,7 +235,7 @@ class _JourneyPageState extends State<JourneyPage>
                                                     Text(
                                                       didReps.toString() +
                                                           ' of ' +
-                                                            totalReps.toString(),
+                                                          totalReps.toString(),
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .headline6,
@@ -281,8 +285,8 @@ class _JourneyPageState extends State<JourneyPage>
                                                         ),
                                                         SizedBox(width: 10),
                                                         Text(
-                                                            coins.toString(),
-                                                            style:
+                                                          coins.toString(),
+                                                          style:
                                                               Theme.of(context)
                                                                   .textTheme
                                                                   .headline6,
@@ -314,25 +318,25 @@ class _JourneyPageState extends State<JourneyPage>
                       //地图
                       flex: 10,
                       child: Container(
-                        width: double.infinity,
-                        color: Colors.blue,
+                          color: Colors.blue,
                         child: ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: _dots.length ~/ 12,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                  30,
-                                  0,
-                                  30,
-                                  0,
-                                ),
-                                child: Stack(
-                                  overflow: Overflow.visible,
-                                  children: thinkaboutlater(index),
-                                ),
-                              );
-                            }),
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: _dots.length ~/ 12,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                30,
+                                15,
+                                30,
+                                0,
+                              ),
+                              child: Stack(
+                                overflow: Overflow.visible,
+                                children: thinkaboutlater(index),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ]),
@@ -447,7 +451,7 @@ class _JourneyPageState extends State<JourneyPage>
     double wunit = MediaQuery.of(context).size.width / 6;
     double hunit = 300 / 12;
     return Positioned(
-      left: left * wunit -size / 2,
+      left: left * wunit - size / 2,
       top: right * hunit - size / 2,
       child: GestureDetector(
         child: Container(
@@ -615,12 +619,6 @@ class _JourneyPageState extends State<JourneyPage>
     );
   }
 
-  String weekly = 'inactiveStar@2x.png';
-  String daily = 'lock.png';
-  String levelUp = 'levelUp@2x.png';
-  String doingDot = 'doingDot.png';
-  String cross = 'cross.png';
-
   List<Widget> thinkaboutlater(int index) {
     List<List> twoDList = List.generate(12, (_) => new List(2));
     twoDList[0] = [-0.05, 0.0];
@@ -638,19 +636,18 @@ class _JourneyPageState extends State<JourneyPage>
     index = 12 * index;
     double dotSize;
     String img;
-    List<String> bodies = [];
     List<Widget> widgetList = [];
     widgetList.add(
       SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 250,
         child: CustomPaint(
-          painter: PathPainter(_dots,index),
+          painter: PathPainter(_dots, index),
         ),
       ),
     );
     bool first = true;
-    if (index < _dots.length) {
+    if (index < 110) {
       for (int j = 0; j < 12; j++) {
         Dot dot = _dots[index];
         if (dot.dotType == Type.DAILY) {
@@ -658,7 +655,7 @@ class _JourneyPageState extends State<JourneyPage>
           switch (dot.status) {
             case Status.LOCK:
               {
-                img = daily;
+                img = 'lock.png';
               }
               break;
             case Status.TICK:
@@ -669,6 +666,8 @@ class _JourneyPageState extends State<JourneyPage>
             case Status.CURRENT_LOCK:
               {
                 img = 'doingDot.png';
+
+                dotSize = 30;// _doubleAnim.value * 30;
                 totalReps = dot.reps;
                 coins =
                     (double.parse(dot.reward[0].amount) * 100).round().toInt();
@@ -694,6 +693,7 @@ class _JourneyPageState extends State<JourneyPage>
             case Status.CURRENT_LOCK:
               {
                 img = 'doingDot.png';
+                dotSize = _doubleAnim.value * dotSize;
                 totalReps = dot.reps;
                 coins =
                     (double.parse(dot.reward[0].amount) * 100).round().toInt();
@@ -709,7 +709,6 @@ class _JourneyPageState extends State<JourneyPage>
                 img = 'cross.png';
               }
           }
-          bodies.add(dot.body);
         } else if (dot.dotType == Type.TIER) {
           widgetList.add(buildText(first, dot.body));
           first = !first;
@@ -723,6 +722,7 @@ class _JourneyPageState extends State<JourneyPage>
             case Status.CURRENT_LOCK:
               {
                 img = 'doingDot.png';
+                dotSize = _doubleAnim.value * dotSize;
                 totalReps = dot.reps;
                 coins =
                     (double.parse(dot.reward[0].amount) * 100).round().toInt();
@@ -738,7 +738,6 @@ class _JourneyPageState extends State<JourneyPage>
                 img = 'cross.png';
               }
           }
-          bodies.add(dot.body);
         }
         index++;
         widgetList
