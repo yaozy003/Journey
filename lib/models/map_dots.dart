@@ -32,7 +32,7 @@ class MapDots {
 
 class Dot {
   Dot({
-    @required this.dotType,
+    this.dotType,
     this.status,
     this.reward,
     this.day,

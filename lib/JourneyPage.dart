@@ -18,34 +18,45 @@ class JourneyPage extends StatefulWidget {
 class _JourneyPageState extends State<JourneyPage>
     with SingleTickerProviderStateMixin {
   List<Dot> _dots = [];
-  int didReps = 0;
-  int totalReps = 0;
-  int coins = 0;
+  Dot currentLockDot = Dot(reps: 0,reward: [Reward(rewardType:Type.DAILY ,amount:"0.0")]);
+  int originalDotsAmount = 0;
 
   //Animation Controller & Tween for dots.
   AnimationController _animationController;
   Animation<double> _doubleAnim;
 
-  Future<List<Dot>> loadJsonData() async {
+  Future<List<Dot>> loadJsonDataUsingFuture() async {
     String jsonString = await rootBundle.loadString('assets/journeyMap.json');
     Map<String, dynamic> data = json.decode(jsonString);
     return MapDots.fromJson(data).dots;
   }
+  // Future<List<Dot>> loadJsonDataUsingFuture() async {
+  //   return await rootBundle.loadString('assets/journeyMap.json').then((jsonString) => json.decode(jsonString))
+  //   .then((parsed) => parsed.map((json) => Dot.fromJson(json)).toList());
+  // }
 
   @override
-  void initState() {
-    bool _loaded = false;
+  void initState()  {
     super.initState();
-    this.loadJsonData().then((d) => setState(() {
+     this.loadJsonDataUsingFuture().then((d) => setState(() {
           _dots = d;
+          originalDotsAmount = _dots.length;
           //make dots amount is multiples of 12
           int makeUpAmount = 12 - (_dots.length % 12);
           for (int i = 0; i < makeUpAmount; i++) {
             _dots.add(Dot(dotType: Type.MAKEUP));
-            print(i);
           }
-          _loaded = true;
+          print("dots length: "+_dots.length.toString());
+          if(_dots!= null){
+            findCurrentLockDot();
+            print(currentLockDot.reward);
+          }
+          else{
+            print("dots are null");
+          }
         }));
+
+
     _animationController = AnimationController(
         vsync: this,
         duration: Duration(
@@ -115,6 +126,7 @@ class _JourneyPageState extends State<JourneyPage>
                     labels: ['Journey Map', 'Activity'],
                     onToggle: (index) {
                       print('switched to: $index');
+
                       //TODO:linked to another page.
                     },
                   ),
@@ -128,27 +140,29 @@ class _JourneyPageState extends State<JourneyPage>
                   width: double.infinity,
                   child: Column(children: [
                     Expanded(
-                      flex: 1,
+                      flex: 10,
                       child: Container(
                         color: Colors.blue,
                         width: width,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             Container(
                               //notification rect
                               width: width,
-                              height: 36,
+                              height: 28,
                               color: Colors.blue,
+                              margin: EdgeInsets.only(top: 10),
                               child: Row(
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(
-                                        16.0, 14.0, 16.0, 14.0),
+                                        16.0, 10, 16.0, 0),
                                     child: const Image(
                                       image:
-                                          AssetImage('assets/images/Badge.png'),
+                                          AssetImage('assets/images/Badge.png',),
+
                                     ),
                                   ),
                                   Column(
@@ -233,9 +247,9 @@ class _JourneyPageState extends State<JourneyPage>
                                                           .bodyText2,
                                                     ),
                                                     Text(
-                                                      didReps.toString() +
+                                                      currentLockDot.reps.toString() +
                                                           ' of ' +
-                                                          totalReps.toString(),
+                                                          currentLockDot.reps.toString(),
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .headline6,
@@ -285,7 +299,7 @@ class _JourneyPageState extends State<JourneyPage>
                                                         ),
                                                         SizedBox(width: 10),
                                                         Text(
-                                                          coins.toString(),
+                                                          (double.parse(currentLockDot.reward[0].amount)*100).round().toString(),
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
@@ -316,7 +330,7 @@ class _JourneyPageState extends State<JourneyPage>
                     ),
                     Expanded(
                       //地图
-                      flex: 10,
+                      flex: 118,
                       child: Container(
                           color: Colors.blue,
                         child: ListView.builder(
@@ -620,6 +634,7 @@ class _JourneyPageState extends State<JourneyPage>
   }
 
   List<Widget> thinkaboutlater(int index) {
+
     List<List> twoDList = List.generate(12, (_) => new List(2));
     twoDList[0] = [-0.05, 0.0];
     twoDList[1] = [0.4, 2.15];
@@ -667,10 +682,7 @@ class _JourneyPageState extends State<JourneyPage>
               {
                 img = 'doingDot.png';
 
-                dotSize = 30;// _doubleAnim.value * 30;
-                totalReps = dot.reps;
-                coins =
-                    (double.parse(dot.reward[0].amount) * 100).round().toInt();
+                dotSize =  _doubleAnim.value * 30;
               }
               break;
             default:
@@ -694,9 +706,6 @@ class _JourneyPageState extends State<JourneyPage>
               {
                 img = 'doingDot.png';
                 dotSize = _doubleAnim.value * dotSize;
-                totalReps = dot.reps;
-                coins =
-                    (double.parse(dot.reward[0].amount) * 100).round().toInt();
               }
               break;
             case Status.LOCK:
@@ -723,9 +732,6 @@ class _JourneyPageState extends State<JourneyPage>
               {
                 img = 'doingDot.png';
                 dotSize = _doubleAnim.value * dotSize;
-                totalReps = dot.reps;
-                coins =
-                    (double.parse(dot.reward[0].amount) * 100).round().toInt();
               }
               break;
             case Status.LOCK:
@@ -739,6 +745,9 @@ class _JourneyPageState extends State<JourneyPage>
               }
           }
         }
+        else if (dot.dotType == Type.MAKEUP) {
+
+        }
         index++;
         widgetList
             .add(buildDots(twoDList[j][0], twoDList[j][1], dotSize, img, dot));
@@ -746,5 +755,14 @@ class _JourneyPageState extends State<JourneyPage>
       }
     }
     return widgetList;
+  }
+
+  void findCurrentLockDot() {
+    for (int j = 0; j < _dots.length; j++) {
+      if (_dots[j].status == Status.CURRENT_LOCK) {
+        currentLockDot = _dots[j];
+        break;
+      }
+    }
   }
 }

@@ -5,7 +5,8 @@ import 'package:path_drawing/path_drawing.dart';
 
 class PathPainter extends CustomPainter {
   final List<Dot> dots;
-  final int index;
+
+  int index;
 
   PathPainter(this.dots, this.index);
 
@@ -14,7 +15,6 @@ class PathPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    int count = index;
     double wunit = size.width / 6;
     double hunit = size.height / 12;
     Paint paint = Paint()
@@ -26,7 +26,6 @@ class PathPainter extends CustomPainter {
       ..color = Colors.yellow
       ..style = PaintingStyle.stroke
       ..strokeWidth = 14.0;
-    Path path = Path();
     //
     dotPoints.add(Point(-0.1 * wunit, 0)); //1
     dotPoints.add(Point(0.1 * wunit, 1.8 * hunit)); //control point 0.5
@@ -90,6 +89,8 @@ class PathPainter extends CustomPainter {
     }
 
     for (int i = 0; i < dotPoints.length; i++) {
+
+      Path path = Path();
       if (i % 3 == 0) {
         x0 = dotPoints[i].x;
         y0 = dotPoints[i].y;
@@ -106,39 +107,21 @@ class PathPainter extends CustomPainter {
           x2,
           y2,
         );
-        Path p = Path()
-          ..moveTo(10.0, 10.0)
-          ..lineTo(100.0, 100.0)
-          ..quadraticBezierTo(125.0, 20.0, 200.0, 100.0);
-
-        if (count < dots.length  &&
-            dots[count].status == Status.UNDONE) {
-          print("helo");
-          canvas.drawPath(
-              dashPath(
-                path,
-                dashArray: CircularIntervalList<double>(
-                  <double>[5.0, 2.5],
-                ),
-              ),
-              paint);
-        }else {
+        if (index < temp ) {
           canvas.drawPath(path, paint);
+          index++;
+        } else if (index >= temp ) {
+          print("here: " + index.toString());
+          canvas.drawPath(path, dashPaint);
+          index ++;
         }
+
       }
-      //if (count < dots.length) {
-      //   if(count < 52){
-      //     canvas.drawPath(path, paint);
-      //   } else {
-      //     canvas.drawPath(path, dashPaint);
-      //   }
-      //   count ++;
-      // }
     }
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
 
 class Point {
