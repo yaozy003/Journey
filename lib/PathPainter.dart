@@ -5,10 +5,10 @@ import 'package:path_drawing/path_drawing.dart';
 
 class PathPainter extends CustomPainter {
   final List<Dot> dots;
-
+  int originalDotAmount;
   int index;
 
-  PathPainter(this.dots, this.index);
+  PathPainter(this.dots, this.index, this.originalDotAmount);
 
   List<Point> dotPoints = [];
   double x0, y0, x1, y1, x2, y2, x3, y3;
@@ -23,7 +23,7 @@ class PathPainter extends CustomPainter {
       ..strokeWidth = 14.0;
 
     Paint dashPaint = Paint()
-      ..color = Colors.yellow
+      ..color = Colors.white.withOpacity(0.2)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 14.0;
     //
@@ -89,7 +89,6 @@ class PathPainter extends CustomPainter {
     }
 
     for (int i = 0; i < dotPoints.length; i++) {
-
       Path path = Path();
       if (i % 3 == 0) {
         x0 = dotPoints[i].x;
@@ -107,15 +106,27 @@ class PathPainter extends CustomPainter {
           x2,
           y2,
         );
-        if (index < temp ) {
-          canvas.drawPath(path, paint);
-          index++;
-        } else if (index >= temp ) {
-          print("here: " + index.toString());
-          canvas.drawPath(path, dashPaint);
-          index ++;
+        if (index < dots.length) {
+          if (dots[index].status == Status.UNDONE ||
+              dots[index].dotType == Type.MAKEUP || index == originalDotAmount -1) {
+            canvas.drawPath(
+                //dashiline
+                dashPath(
+                  path,
+                  dashArray: CircularIntervalList<double>(
+                    <double>[5.0, 2.5],
+                  ),
+                ),
+                paint);
+          }
+          else if (index < temp) {
+            canvas.drawPath(path, paint);
+            index++;
+          } else if (index >= temp) {
+            canvas.drawPath(path, dashPaint);
+            index++;
+          }
         }
-
       }
     }
   }
