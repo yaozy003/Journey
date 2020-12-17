@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:journey/BottomNavigator.dart';
 class ChallengesPage extends StatefulWidget {
   ChallengesPage();
 

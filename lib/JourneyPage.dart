@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:journey/PathPainter.dart';
-import 'package:journey/BottomNavigator.dart';
 
 import 'package:journey/models/map_dots.dart';
 
