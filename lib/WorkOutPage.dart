@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:journey/BottomNavigator.dart';
-
-class ProfilePage extends StatefulWidget {
-  ProfilePage();
+class WorkoutPage extends StatefulWidget {
+  WorkoutPage();
 
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _WorkoutPageState createState() => _WorkoutPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _WorkoutPageState extends State<WorkoutPage> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return  Center(
@@ -17,12 +19,11 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             Expanded(
                 child: Container(
-              child: Text(
-                "Hello world",
-                style: TextStyle(color: Colors.black),
-              ),
-            )),
-
+                  child: Text(
+                    "Hello world",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                )),
           ],
         ),
       );

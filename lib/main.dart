@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'JourneyPage.dart';
-import 'package:journey/RewardsPage.dart';
-import 'package:journey/ChallengesPage.dart';
-import 'package:journey/ProfilePage.dart';
+import 'package:journey/JourneyPage.dart';
+import 'package:journey/WorkOutPage.dart';
+import 'package:journey/Navigator.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -31,10 +31,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/HomePage',
       routes: {
-        '/HomePage': (context) => JourneyPage(),
-        '/rewardsPage': (context) => RewardsPage(),
-        '/challengesPage': (context) => ChallengesPage(),
-        '/profilePage': (context) => ProfilePage(),
+        '/HomePage': (context) => NavigatorPage(),
       },
     );
   }

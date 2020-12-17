@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:journey/BottomNavigator.dart';
 class RewardsPage extends StatefulWidget {
   RewardsPage();
 
@@ -12,24 +13,13 @@ class _RewardsPageState extends State<RewardsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("REWARDS"),
-      ),
-      body: Center(
+    return Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '0',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Expanded(child: Container(child: Text("Hello world",style: TextStyle(color: Colors.black),),)),
           ],
         ),
-      ),
-    );
+      );
   }
 }

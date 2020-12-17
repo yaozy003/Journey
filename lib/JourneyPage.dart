@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:journey/PathPainter.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:journey/BottomNavigator.dart';
+
 import 'package:journey/models/map_dots.dart';
 
 class JourneyPage extends StatefulWidget {
-  JourneyPage();
+  final List<Dot> dots;
+
+  Dot currentLockDot;
+  final int orginalDotAmount;
+
+  JourneyPage(this.dots, this.currentLockDot, this.orginalDotAmount);
 
   @override
   _JourneyPageState createState() => _JourneyPageState();
@@ -15,39 +21,16 @@ class JourneyPage extends StatefulWidget {
 
 class _JourneyPageState extends State<JourneyPage>
     with SingleTickerProviderStateMixin {
-  List<Dot> _dots = [];
-  Dot currentLockDot =
-      Dot(reps: 0, reward: [Reward(rewardType: Type.DAILY, amount: "0.0")]);
-  int originalDotsAmount = 0;
+
   int _widgetIndex = 0;
 
   //Animation Controller & Tween for dots.
   AnimationController _animationController;
   Animation<double> _doubleAnim;
 
-  Future<List<Dot>> loadJsonDataUsingFuture() async {
-    String jsonString = await rootBundle.loadString('assets/journeyMap.json');
-    Map<String, dynamic> data = json.decode(jsonString);
-    return MapDots.fromJson(data).dots;
-  }
-
   @override
   void initState() {
     super.initState();
-    this.loadJsonDataUsingFuture().then((d) => setState(() {
-          _dots = d;
-          originalDotsAmount = _dots.length;
-          //make dots amount is multiples of 12
-          int makeUpAmount = 12 - (_dots.length % 12);
-          for (int i = 0; i < makeUpAmount; i++) {
-            _dots.add(Dot(dotType: Type.MAKEUP));
-          }
-          if (_dots != null) {
-            findCurrentLockDot();
-          } else {
-            print("dots are null");
-          }
-        }));
 
     _animationController = AnimationController(
         vsync: this,
@@ -69,66 +52,45 @@ class _JourneyPageState extends State<JourneyPage>
   }
 
   void dispose() {
-
     _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("rebuild");
+    List<Dot> _dots = widget.dots;
+    Dot currentLockDot = widget.currentLockDot != null? widget.currentLockDot:Dot(reps: 0, reward: [Reward(rewardType: Type.DAILY, amount: "0.0")]);
     double width = MediaQuery.of(context).size.width; //screen width
     double height = MediaQuery.of(context).size.height; //screen height
-
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        bottom: false,
-        child: Scaffold(
-          //resizeToAvoidBottomPadding:true,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(height * 0.08),
-            child: AppBar(
-              title: Text(
-                'JOURNEY',
-                style: Theme.of(context).textTheme.headline1,
-              ),
-              bottom: PreferredSize(
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
-                    child: ToggleSwitch(
-                      minWidth: 170.0,
-                      minHeight: 33.0,
-                      fontSize: 14.0,
-                      initialLabelIndex: _widgetIndex,
-                      cornerRadius: 24.0,
-                      activeBgColor: Colors.blue,
-                      activeFgColor: Colors.white,
-                      inactiveBgColor: Colors.white,
-                      inactiveFgColor: Colors.grey,
-                      labels: ['Journey Map', 'Activity'],
-                      onToggle: (index) {
-                        setState(() {
-                          _widgetIndex = index;
-                          print(_widgetIndex);
-                        });
-                        //TODO:linked to another page.
-                      },
-                    ),
-                  ),
-                ]),
-              ),
-              //toggle switch,
-              centerTitle: true,
-              backgroundColor: Colors.white,
-              elevation: 0, //remove shadow.
-            ),
-          ),
-          body: Column(
+    return  Container(
+          color: Colors.white,
+          child: Column(
             children: [
               //试用通知
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                  child: ToggleSwitch(
+                    minWidth: 170.0,
+                    minHeight: 33.0,
+                    fontSize: 14.0,
+                    initialLabelIndex: _widgetIndex,
+                    cornerRadius: 24.0,
+                    activeBgColor: Colors.blue,
+                    activeFgColor: Colors.white,
+                    inactiveBgColor: Colors.white,
+                    inactiveFgColor: Colors.grey,
+                    labels: ['Journey Map', 'Activity'],
+                    onToggle: (index) {
+                      setState(() {
+                        _widgetIndex = index;
+                        print(_widgetIndex);
+                      });
+                      //TODO:linked to another page.
+                    },
+                  ),
+                ),
+              ]),
               _widgetIndex == 0
                   ? Expanded(
                       child: SingleChildScrollView(
@@ -358,129 +320,22 @@ class _JourneyPageState extends State<JourneyPage>
                         ),
                       ])),
                     )
-                  : Container(
-                      height: 100,
-                      child: Text(
-                        "Helo",
-                        style: TextStyle(
-                          color: Colors.black,
+                  : Expanded(
+                      child: Container(
+                        color: Colors.blue,
+                        width: double.infinity,
+                        child: Text(
+                          "Helo",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
-              Stack(overflow: Overflow.visible, children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(6.0, 5.0, 0.0, 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/BottomNavi/journey_inactive.png',
-                                height: 24.22,
-                                width: 24.22,
-                              ),
-                              Text(
-                                'Journey',
-                                style: Theme.of(context).textTheme.headline3,
-                              )
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/HomePage');
-                          }),
-                      FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/BottomNavi/rewards_inactive.png',
-                                height: 24.22,
-                                width: 24.22,
-                              ),
-                              Text(
-                                'Rewards',
-                                style: Theme.of(context).textTheme.headline3,
-                              )
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/rewardsPage');
-                          }),
-                      Spacer(),
-                      FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/BottomNavi/challenges_inactive.png',
-                                height: 24.22,
-                                width: 24.22,
-                              ),
-                              Text(
-                                'Challenges',
-                                style: Theme.of(context).textTheme.headline3,
-                              )
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/challengesPage');
-                          }),
-                      FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/BottomNavi/profile_active.png',
-                                height: 24.22,
-                                width: 24.22,
-                              ),
-                              Text(
-                                'Profile',
-                                style: Theme.of(context).textTheme.headline3,
-                              )
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/profilePage');
-                          }),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  bottom: 20,
-                  child: SizedBox(
-                    width: width,
-                    child: Center(
-                      child: RawMaterialButton(
-                          fillColor: Colors.white,
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(4.0),
-                          child: Image.asset(
-                            "assets/images/BottomNavi/workout_inactive@2x.png",
-                            height: 70,
-                            width: 70,
-                            fit: BoxFit.fill,
-                          ),
-                          onPressed: () {
-                            Navigator.popAndPushNamed(context, '/HomePage');
-                          }),
-                    ),
-                  ),
-                ),
-              ]),
+              //BottomNavigator(),
             ],
           ),
-        ),
-      ),
-      //Activity Page
-    );
+        );
   }
 
   Widget buildDots(
@@ -679,6 +534,8 @@ class _JourneyPageState extends State<JourneyPage>
   }
 
   List<Widget> thinkaboutlater(int index) {
+    int originalDotsAmount = widget.orginalDotAmount;
+    List<Dot> _dots = widget.dots;
     List<List> twoDList = List.generate(12, (_) => new List(2));
     twoDList[0] = [-0.05, 0.0];
     twoDList[1] = [0.4, 2.15];
@@ -804,14 +661,5 @@ class _JourneyPageState extends State<JourneyPage>
       }
     }
     return widgetList;
-  }
-
-  void findCurrentLockDot() {
-    for (int j = 0; j < _dots.length; j++) {
-      if (_dots[j].status == Status.CURRENT_LOCK) {
-        currentLockDot = _dots[j];
-        break;
-      }
-    }
   }
 }
