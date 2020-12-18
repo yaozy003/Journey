@@ -46,7 +46,14 @@ class _JourneyPageState extends State<JourneyPage>
           //动画在开始时就停止的状态
           _animationController.forward(); //向前
         }
+      })
+    ..addListener(() {
+      setState((
+
+          ) {
+
       });
+    });
     _animationController.forward();
   }
 
@@ -66,30 +73,28 @@ class _JourneyPageState extends State<JourneyPage>
           child: Column(
             children: [
               //试用通知
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
-                  child: ToggleSwitch(
-                    minWidth: 170.0,
-                    minHeight: 33.0,
-                    fontSize: 14.0,
-                    initialLabelIndex: _widgetIndex,
-                    cornerRadius: 24.0,
-                    activeBgColor: Colors.blue,
-                    activeFgColor: Colors.white,
-                    inactiveBgColor: Colors.white,
-                    inactiveFgColor: Colors.grey,
-                    labels: ['Journey Map', 'Activity'],
-                    onToggle: (index) {
-                      setState(() {
-                        _widgetIndex = index;
-                        print(_widgetIndex);
-                      });
-                      //TODO:linked to another page.
-                    },
-                  ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                child: ToggleSwitch(
+                  minWidth: 170.0,
+                  minHeight: 33.0,
+                  fontSize: 14.0,
+                  initialLabelIndex: _widgetIndex,
+                  cornerRadius: 24.0,
+                  activeBgColor: Colors.blue,
+                  activeFgColor: Colors.white,
+                  inactiveBgColor: Colors.white,
+                  inactiveFgColor: Colors.grey,
+                  labels: ['Journey Map', 'Activity'],
+                  onToggle: (index) {
+                    setState(() {
+                      _widgetIndex = index;
+                      print(_widgetIndex);
+                    });
+                    //TODO:linked to another page.
+                  },
                 ),
-              ]),
+              ),
               _widgetIndex == 0
                   ? Expanded(
                       child: SingleChildScrollView(
@@ -116,7 +121,7 @@ class _JourneyPageState extends State<JourneyPage>
                                           16.0, 10, 16.0, 0),
                                       child: const Image(
                                         image: AssetImage(
-                                          'assets/images/Badge.png',
+                                          'assets/images/JourneyPageImages/Badge.png',
                                         ),
                                       ),
                                     ),
@@ -255,7 +260,7 @@ class _JourneyPageState extends State<JourneyPage>
                                                                 .center,
                                                         children: [
                                                           Image.asset(
-                                                            'assets/images/bot.png',
+                                                            'assets/images/JourneyPageImages/bot.png',
                                                             height: 27,
                                                             width: 27,
                                                           ),
@@ -351,29 +356,14 @@ class _JourneyPageState extends State<JourneyPage>
       top: right * hunit - size / 2,
       child: GestureDetector(
         child:
-            // dot.status == Status.CURRENT_LOCK
-            // ? Container(
-            //     decoration: BoxDecoration(
-            //       color: Color(0xFFF4F4F4),
-            //       shape: BoxShape.circle,
-            //     ),
-            //     child: ScaleTransition(
-            //       scale: _doubleAnim,
-            //       child: Image.asset(
-            //         'assets/images/' + img,
-            //         width: size,
-            //         height: size,
-            //       ),
-            //     ),
-            //   )
-            // :
+
             Container(
           decoration: BoxDecoration(
             color: Color(0xFFF4F4F4),
             shape: BoxShape.circle,
           ),
           child: Image.asset(
-            'assets/images/' + img,
+            'assets/images/JourneyPageImages/' + img,
             width: size,
             height: size,
           ),
@@ -454,7 +444,7 @@ class _JourneyPageState extends State<JourneyPage>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
-                                      'assets/images/bot@2x.png',
+                                      'assets/images/JourneyPageImages/bot@2x.png',
                                       height: 20,
                                       width: 20,
                                     ),
@@ -582,7 +572,7 @@ class _JourneyPageState extends State<JourneyPage>
               {
                 img = 'doingDot.png';
 
-                dotSize = _doubleAnim.value * 30;
+                dotSize = _doubleAnim.value * dotSize;
               }
               break;
             case Status.UNDONE:

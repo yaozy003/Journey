@@ -304,7 +304,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
     ];
 
     return PageView.builder(
-        // physics: NeverScrollableScrollPhysics(), //禁用左右滑动
+        physics: NeverScrollableScrollPhysics(),
         itemCount: _pages.length,
         controller: _pageController, //控制器
         itemBuilder: (context, index) => _pages[index] //构建一个页面实例
