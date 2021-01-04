@@ -45,7 +45,7 @@ class _JourneyPageState extends State<JourneyPage>
         }
       })
       ..addListener(() {
-        setState(() {});
+        //setState(() {});
       });
     _animationController.forward();
   }
@@ -560,15 +560,15 @@ class _JourneyPageState extends State<JourneyPage>
     );
   }
 
-  Widget buildText(bool first, String text,) {
+  Widget buildText(bool alignLeft, String text,) {
     return Positioned(
-      right: first ? null : 40,
-      left: first ? 50 : null,
-      top: first ? -15 : 110,
+      right: alignLeft ? null : 40,
+      left: alignLeft ? 50 : null,
+      top: alignLeft ? -15 : 110,
       child: Container(
         width: 300,
         height: 30,
-        alignment: first ? Alignment.centerLeft : Alignment.centerRight,
+        alignment: alignLeft ? Alignment.centerLeft : Alignment.centerRight,
         decoration: BoxDecoration(
           color: Colors.blue,
           shape: BoxShape.rectangle,
@@ -608,16 +608,16 @@ class _JourneyPageState extends State<JourneyPage>
         ),
       ),
     );
-    bool first = true;
+    bool alignLeft = true;
     if (index < originalDotsAmount) {
       for (int j = 0; j < 12; j++) {
         Dot dot = _dots[index];
         if (dot.dotType == Type.WEEKLY) {
-          widgetList.add(buildText(first, dot.body));
-          first = !first;
-        } else if (dot.dotType == Type.WEEKLY) {
-          widgetList.add(buildText(first, dot.body));
-          first = !first;
+          widgetList.add(buildText(alignLeft, dot.body));
+          alignLeft = !alignLeft;
+        } else if (dot.dotType == Type.TIER) {
+          widgetList.add(buildText(alignLeft, dot.body));
+          alignLeft = !alignLeft;
         }
         index++;
         widgetList.add(buildDots(twoDList[j][0], twoDList[j][1], dot));

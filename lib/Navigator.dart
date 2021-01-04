@@ -85,7 +85,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
       child: SafeArea(
         bottom: false,
         child: Scaffold(
-          appBar: PreferredSize(
+          _currentPage() == WorkOutPage()?null:appBar: PreferredSize(
             preferredSize: Size.fromHeight(height * appBarPercentage),
             child: AppBar(
               centerTitle: true,
@@ -302,7 +302,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
       ChallengesPage(),
       ProfilePage(),
     ];
-
     return PageView.builder(
         physics: NeverScrollableScrollPhysics(),
         itemCount: _pages.length,

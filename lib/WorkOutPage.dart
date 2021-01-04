@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class WorkoutPage extends StatefulWidget {
   WorkoutPage();
 
@@ -7,24 +8,11 @@ class WorkoutPage extends StatefulWidget {
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
-
-
-
   @override
   Widget build(BuildContext context) {
-    return  Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Expanded(
-                child: Container(
-                  child: Text(
-                    "Hello world",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                )),
-          ],
-        ),
-      );
+    return ListView(
+        children: <Widget>[
+
+        ]);
   }
 }
