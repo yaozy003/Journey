@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:journey/JourneyPage.dart';
-import 'package:journey/WorkOutPage.dart';
 import 'package:journey/Navigator.dart';
 
 void main() {

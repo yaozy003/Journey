@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 
-const int bottomBarHeight = 122;
+const double bottomBarHeight = 122;
 const double appBarPercentage = 0.04;
 const double excludAappBarHeightPercentage = 0.96;
 
@@ -22,7 +22,7 @@ class NavigatorPage extends StatefulWidget {
 
 class _NavigatorPageState extends State<NavigatorPage> {
   PageController _pageController = PageController();
-  int _currentIndex = 0;
+  int _currentIndex = 3;
 
   //Dots
   List<Dot> _dots = [];
@@ -33,7 +33,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
       rewardsSelected = false,
       challengesSelected = false,
       profileSelected = false,
-      workOutSelected = false;
+      workOutSelected = true;
 
   Future<List<Dot>> loadJsonDataUsingFuture() async {
     String jsonString = await rootBundle.loadString('assets/journeyMap.json');
@@ -80,217 +80,198 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width; //screen width
     double height = MediaQuery.of(context).size.height; //screen height
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        bottom: false,
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(height * appBarPercentage),
-            child: AppBar(
-              centerTitle: true,
-              backgroundColor: Colors.white,
-              elevation: 0, //remove shadow.
-              title: Text(
-                title,
-                style: Theme.of(context).textTheme.headline1,
-              ),
-            ),
-          ),
-          body: Column(
-            children: [
-              SizedBox(
-                  height:
-                      height * excludAappBarHeightPercentage - bottomBarHeight,
-                  width: double.infinity,
-                  child: _currentPage()),
-              Stack(overflow: Overflow.visible, children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Column(
-                            children: [
-                              journeySelected
-                                  ? Image.asset(
-                                'assets/images/BottomNavi/journey_active.png',
-                                height: 24.22,
-                                width: 24.22,
-                              )
-                                  : Image.asset(
-                                'assets/images/BottomNavi/journey_inactive.png',
-                                height: 24.22,
-                                width: 24.22,
-                              ),
-                              Text(
-                                'Journey',
-                                style: Theme.of(context).textTheme.headline3,
-                              )
-                            ],
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              journeySelected = true;
-                              rewardsSelected = false;
-                              challengesSelected = false;
-                              profileSelected = false;
-                              workOutSelected =false;
-                              title = "JOURNEY";
-                              _currentIndex = 1;
-                            });
-                            _pageController.jumpToPage(1);
-                          }),
-                      FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Column(
-                            children: [
-                              rewardsSelected
-                                  ? Image.asset(
-                                'assets/images/BottomNavi/rewards_active.png',
-                                height: 24.22,
-                                width: 24.22,
-                              )
-                                  : Image.asset(
-                                'assets/images/BottomNavi/rewards_inactive.png',
-                                height: 24.22,
-                                width: 24.22,
-                              ),
-                              Text(
-                                'Rewards',
-                                style: Theme.of(context).textTheme.headline3,
-                              )
-                            ],
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              journeySelected = false;
-                              rewardsSelected = true;
-                              challengesSelected = false;
-                              profileSelected = false;
-                              workOutSelected =false;
-                              title = "REWARDS";
-                              _currentIndex = 2;
-                            });
-                            _pageController.jumpToPage(2);
-                          }),
-                      Spacer(),
-                      FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Column(
-                            children: [
-                              challengesSelected
-                                  ? Image.asset(
-                                'assets/images/BottomNavi/challenges_active.png',
-                                height: 24.22,
-                                width: 24.22,
-                              )
-                                  : Image.asset(
-                                'assets/images/BottomNavi/challenges_inactive.png',
-                                height: 24.22,
-                                width: 24.22,
-                              ),
-                              Text(
-                                'Challenges',
-                                style: Theme.of(context).textTheme.headline3,
-                              )
-                            ],
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              journeySelected = false;
-                              rewardsSelected = false;
-                              challengesSelected = true;
-                              profileSelected = false;
-                              workOutSelected =false;
-                              title = "CHALLENGES";
-                              _currentIndex = 3;
-                            });
-                            _pageController.jumpToPage(3);
-                          }),
-                      FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Column(
-                            children: [
-                              profileSelected
-                                  ? Image.asset(
-                                      'assets/images/BottomNavi/profile_active.png',
-                                      height: 24.22,
-                                      width: 24.22,
-                                    )
-                                  : Image.asset(
-                                      'assets/images/BottomNavi/profile_inactive.png',
-                                      height: 24.22,
-                                      width: 24.22,
-                                    ),
-                              Text(
-                                'Profile',
-                                style: Theme.of(context).textTheme.headline3,
-                              )
-                            ],
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              journeySelected = false;
-                              rewardsSelected = false;
-                              challengesSelected = false;
-                              profileSelected = true;
-                              workOutSelected =false;
-                              title = "PROFILES";
-                              _currentIndex = 4;
-                            });
-                            _pageController.jumpToPage(4);
-                          }),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  bottom: 20,
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Center(
-                      child: RawMaterialButton(
-                          fillColor: Colors.white,
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(4.0),
-                          child: workOutSelected
-                              ? Image.asset(
-                            'assets/images/BottomNavi/workout_active@2x.png',
-                            height: 70,
-                            width: 70,
+    return Scaffold(
+      body: _currentPage(),
+      bottomNavigationBar: SizedBox(
+        height: bottomBarHeight,
+          width: width,
+          child: ButtomBar(context)),
+    );
+  }
+
+  Stack ButtomBar(BuildContext context) {
+    return Stack(overflow: Overflow.visible, children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlatButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Column(
+                  children: [
+                    journeySelected
+                        ? Image.asset(
+                            'assets/images/BottomNavi/journey_active.png',
+                            height: 24.22,
+                            width: 24.22,
                           )
-                              : Image.asset(
-                            'assets/images/BottomNavi/workout_inactive@2x.png',
-                            height: 70,
-                            width: 70,
+                        : Image.asset(
+                            'assets/images/BottomNavi/journey_inactive.png',
+                            height: 24.22,
+                            width: 24.22,
                           ),
-                          onPressed: () {
-                            setState(() {
-                              journeySelected = false;
-                              rewardsSelected = false;
-                              challengesSelected = false;
-                              profileSelected = false;
-                              workOutSelected = true;
-                              title = "";
-                              _currentIndex = 0;
-                            });
-                            _pageController.jumpToPage(0);
-                          }),
-                    ),
-                  ),
+                    Text(
+                      'Journey',
+                      style: Theme.of(context).textTheme.headline3,
+                    )
+                  ],
                 ),
-              ]),
-            ],
+                onPressed: () {
+                  setState(() {
+                    journeySelected = true;
+                    rewardsSelected = false;
+                    challengesSelected = false;
+                    profileSelected = false;
+                    workOutSelected = false;
+                    title = "JOURNEY";
+                    _currentIndex = 1;
+                  });
+                  _pageController.jumpToPage(1);
+                }),
+            FlatButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Column(
+                  children: [
+                    rewardsSelected
+                        ? Image.asset(
+                            'assets/images/BottomNavi/rewards_active.png',
+                            height: 24.22,
+                            width: 24.22,
+                          )
+                        : Image.asset(
+                            'assets/images/BottomNavi/rewards_inactive.png',
+                            height: 24.22,
+                            width: 24.22,
+                          ),
+                    Text(
+                      'Rewards',
+                      style: Theme.of(context).textTheme.headline3,
+                    )
+                  ],
+                ),
+                onPressed: () {
+                  setState(() {
+                    journeySelected = false;
+                    rewardsSelected = true;
+                    challengesSelected = false;
+                    profileSelected = false;
+                    workOutSelected = false;
+                    title = "REWARDS";
+                    _currentIndex = 2;
+                  });
+                  _pageController.jumpToPage(2);
+                }),
+            Spacer(),
+            FlatButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Column(
+                  children: [
+                    challengesSelected
+                        ? Image.asset(
+                            'assets/images/BottomNavi/challenges_active.png',
+                            height: 24.22,
+                            width: 24.22,
+                          )
+                        : Image.asset(
+                            'assets/images/BottomNavi/challenges_inactive.png',
+                            height: 24.22,
+                            width: 24.22,
+                          ),
+                    Text(
+                      'Challenges',
+                      style: Theme.of(context).textTheme.headline3,
+                    )
+                  ],
+                ),
+                onPressed: () {
+                  setState(() {
+                    journeySelected = false;
+                    rewardsSelected = false;
+                    challengesSelected = true;
+                    profileSelected = false;
+                    workOutSelected = false;
+                    title = "CHALLENGES";
+                    _currentIndex = 3;
+                  });
+                  _pageController.jumpToPage(3);
+                }),
+            FlatButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Column(
+                  children: [
+                    profileSelected
+                        ? Image.asset(
+                            'assets/images/BottomNavi/profile_active.png',
+                            height: 24.22,
+                            width: 24.22,
+                          )
+                        : Image.asset(
+                            'assets/images/BottomNavi/profile_inactive.png',
+                            height: 24.22,
+                            width: 24.22,
+                          ),
+                    Text(
+                      'Profile',
+                      style: Theme.of(context).textTheme.headline3,
+                    )
+                  ],
+                ),
+                onPressed: () {
+                  setState(() {
+                    journeySelected = false;
+                    rewardsSelected = false;
+                    challengesSelected = false;
+                    profileSelected = true;
+                    workOutSelected = false;
+                    title = "PROFILES";
+                    _currentIndex = 4;
+                  });
+                  _pageController.jumpToPage(4);
+                }),
+          ],
+        ),
+      ),
+      Positioned(
+        bottom: 20,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: RawMaterialButton(
+                fillColor: Colors.white,
+                shape: CircleBorder(),
+                padding: EdgeInsets.all(4.0),
+                child: workOutSelected
+                    ? Image.asset(
+                        'assets/images/BottomNavi/workout_active@2x.png',
+                        height: 70,
+                        width: 70,
+                      )
+                    : Image.asset(
+                        'assets/images/BottomNavi/workout_inactive@2x.png',
+                        height: 70,
+                        width: 70,
+                      ),
+                onPressed: () {
+                  setState(() {
+                    journeySelected = false;
+                    rewardsSelected = false;
+                    challengesSelected = false;
+                    profileSelected = false;
+                    workOutSelected = true;
+                    title = "";
+                    _currentIndex = 0;
+                  });
+                  _pageController.jumpToPage(0);
+                }),
           ),
         ),
       ),
-    );
+    ]);
   }
 
   //底部对应 页面
