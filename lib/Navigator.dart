@@ -54,19 +54,19 @@ class _NavigatorPageState extends State<NavigatorPage> {
     super.initState();
 
     this.loadJsonDataUsingFuture().then((d) => setState(() {
-          _dots = d;
-          originalDotsAmount = _dots.length;
-          //make dots amount is multiples of 12
-          int makeUpAmount = 12 - (_dots.length % 12);
-          for (int i = 0; i < makeUpAmount; i++) {
-            _dots.add(Dot(dotType: Type.MAKEUP));
-          }
-          if (_dots != null) {
-            findCurrentLockDot();
-          } else {
-            print("dots are null");
-          }
-        }));
+      _dots = d;
+      originalDotsAmount = _dots.length;
+      //make dots amount is multiples of 12
+      int makeUpAmount = 12 - (_dots.length % 12);
+      for (int i = 0; i < makeUpAmount; i++) {
+        _dots.add(Dot(dotType: Type.MAKEUP));
+      }
+      if (_dots != null) {
+        findCurrentLockDot();
+      } else {
+        print("dots are null");
+      }
+    }));
 
     //监听控制器滑动变化,改变底部tap
     _pageController.addListener(() {
@@ -80,10 +80,11 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width; //screen width
     double height = MediaQuery.of(context).size.height; //screen height
+
     return Scaffold(
       body: _currentPage(),
       bottomNavigationBar: SizedBox(
-        height: bottomBarHeight,
+          height: bottomBarHeight,
           width: width,
           child: ButtomBar(context)),
     );
@@ -103,15 +104,15 @@ class _NavigatorPageState extends State<NavigatorPage> {
                   children: [
                     journeySelected
                         ? Image.asset(
-                            'assets/images/BottomNavi/journey_active.png',
-                            height: 24.22,
-                            width: 24.22,
-                          )
+                      'assets/images/BottomNavi/journey_active.png',
+                      height: 24.22,
+                      width: 24.22,
+                    )
                         : Image.asset(
-                            'assets/images/BottomNavi/journey_inactive.png',
-                            height: 24.22,
-                            width: 24.22,
-                          ),
+                      'assets/images/BottomNavi/journey_inactive.png',
+                      height: 24.22,
+                      width: 24.22,
+                    ),
                     Text(
                       'Journey',
                       style: Theme.of(context).textTheme.headline3,
@@ -137,15 +138,15 @@ class _NavigatorPageState extends State<NavigatorPage> {
                   children: [
                     rewardsSelected
                         ? Image.asset(
-                            'assets/images/BottomNavi/rewards_active.png',
-                            height: 24.22,
-                            width: 24.22,
-                          )
+                      'assets/images/BottomNavi/rewards_active.png',
+                      height: 24.22,
+                      width: 24.22,
+                    )
                         : Image.asset(
-                            'assets/images/BottomNavi/rewards_inactive.png',
-                            height: 24.22,
-                            width: 24.22,
-                          ),
+                      'assets/images/BottomNavi/rewards_inactive.png',
+                      height: 24.22,
+                      width: 24.22,
+                    ),
                     Text(
                       'Rewards',
                       style: Theme.of(context).textTheme.headline3,
@@ -172,15 +173,15 @@ class _NavigatorPageState extends State<NavigatorPage> {
                   children: [
                     challengesSelected
                         ? Image.asset(
-                            'assets/images/BottomNavi/challenges_active.png',
-                            height: 24.22,
-                            width: 24.22,
-                          )
+                      'assets/images/BottomNavi/challenges_active.png',
+                      height: 24.22,
+                      width: 24.22,
+                    )
                         : Image.asset(
-                            'assets/images/BottomNavi/challenges_inactive.png',
-                            height: 24.22,
-                            width: 24.22,
-                          ),
+                      'assets/images/BottomNavi/challenges_inactive.png',
+                      height: 24.22,
+                      width: 24.22,
+                    ),
                     Text(
                       'Challenges',
                       style: Theme.of(context).textTheme.headline3,
@@ -206,15 +207,15 @@ class _NavigatorPageState extends State<NavigatorPage> {
                   children: [
                     profileSelected
                         ? Image.asset(
-                            'assets/images/BottomNavi/profile_active.png',
-                            height: 24.22,
-                            width: 24.22,
-                          )
+                      'assets/images/BottomNavi/profile_active.png',
+                      height: 24.22,
+                      width: 24.22,
+                    )
                         : Image.asset(
-                            'assets/images/BottomNavi/profile_inactive.png',
-                            height: 24.22,
-                            width: 24.22,
-                          ),
+                      'assets/images/BottomNavi/profile_inactive.png',
+                      height: 24.22,
+                      width: 24.22,
+                    ),
                     Text(
                       'Profile',
                       style: Theme.of(context).textTheme.headline3,
@@ -247,15 +248,15 @@ class _NavigatorPageState extends State<NavigatorPage> {
                 padding: EdgeInsets.all(4.0),
                 child: workOutSelected
                     ? Image.asset(
-                        'assets/images/BottomNavi/workout_active@2x.png',
-                        height: 70,
-                        width: 70,
-                      )
+                  'assets/images/BottomNavi/workout_active@2x.png',
+                  height: 70,
+                  width: 70,
+                )
                     : Image.asset(
-                        'assets/images/BottomNavi/workout_inactive@2x.png',
-                        height: 70,
-                        width: 70,
-                      ),
+                  'assets/images/BottomNavi/workout_inactive@2x.png',
+                  height: 70,
+                  width: 70,
+                ),
                 onPressed: () {
                   setState(() {
                     journeySelected = false;
@@ -283,12 +284,11 @@ class _NavigatorPageState extends State<NavigatorPage> {
       ChallengesPage(),
       ProfilePage(),
     ];
-
     return PageView.builder(
         physics: NeverScrollableScrollPhysics(),
         itemCount: _pages.length,
         controller: _pageController, //控制器
         itemBuilder: (context, index) => _pages[index] //构建一个页面实例
-        );
+    );
   }
 }

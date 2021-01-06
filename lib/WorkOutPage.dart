@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:journey/Navigator.dart';
 
 const buttonTextStyle =
-    TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w700);
+TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w700);
 const repsStyle =
-    TextStyle(fontSize: 14.0, color: Colors.blue, fontWeight: FontWeight.w300);
+TextStyle(fontSize: 14.0, color: Colors.blue, fontWeight: FontWeight.w300);
 const titleStyle =
-    TextStyle(fontSize: 18.0, color: Colors.blue, fontWeight: FontWeight.w700);
+TextStyle(fontSize: 18.0, color: Colors.blue, fontWeight: FontWeight.w700);
 const workoutsItemStyle =
-    TextStyle(fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.w300);
+TextStyle(fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.w300);
 bool Premium = false;
 
 
@@ -21,6 +22,7 @@ class WorkoutPage extends StatefulWidget {
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
+
   @override
   Widget build(BuildContext context) {
     List<hWorkoutItem> hWorkouts = [
@@ -174,9 +176,9 @@ class reps extends StatelessWidget {
         child: Container(
           child: Center(
               child: Text(
-            numberofReps.toString(),
-            style: workoutsItemStyle,
-          )),
+                numberofReps.toString(),
+                style: workoutsItemStyle,
+              )),
           color: Colors.blue.withOpacity(0.3),
         ),
       ),
@@ -212,13 +214,13 @@ class horizontalListView extends StatelessWidget {
             widgetList.addAll(workouts[index]
                 .workoutList
                 .map((e) => Row(
-                      children: [
-                        Text(
-                          e,
-                          style: workoutsItemStyle,
-                        ),
-                      ],
-                    ))
+              children: [
+                Text(
+                  e,
+                  style: workoutsItemStyle,
+                ),
+              ],
+            ))
                 .toList());
             return SizedBox(
               width: width * 0.6,
@@ -276,4 +278,3 @@ class vWorkoutItem {
 
   vWorkoutItem(this.image, this.title);
 }
-
