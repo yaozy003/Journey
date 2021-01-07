@@ -311,7 +311,7 @@ class _RewardsPageState extends State<RewardsPage> {
                                 ),
                               ),
                               GridView.count(
-                                  padding: EdgeInsets.symmetric(horizontal: 3),
+                                  padding: EdgeInsets.fromLTRB(3,0,3,20),
                                   crossAxisCount: 2,
                                   mainAxisSpacing: 9,
                                   crossAxisSpacing: 5,
@@ -373,8 +373,8 @@ class _RewardsPageState extends State<RewardsPage> {
                                                               children: [
                                                                 Image.asset(
                                                                   "assets/images/JourneyPageImages/bot.png",
-                                                                  width: 16,
-                                                                  height: 16,
+                                                                  width: 20,
+                                                                  height: 20,
                                                                 ),
                                                                 SizedBox(
                                                                   width: 5,

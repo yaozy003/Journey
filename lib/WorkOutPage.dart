@@ -10,6 +10,7 @@ const titleStyle =
 TextStyle(fontSize: 18.0, color: Colors.blue, fontWeight: FontWeight.w700);
 const workoutsItemStyle =
 TextStyle(fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.w300);
+
 bool Premium = false;
 
 
@@ -70,25 +71,39 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
     return Container(
       color: Colors.blue,
-      child: Column(
-        children: [
-          SizedBox(height: height * 0.04,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "WORKOUTS",
-                style: TextStyle(
-                    fontSize: 22.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w300),
+      child: SizedBox(
+        height: height ,
+        child: ListView(
+          children: [
+            SizedBox(height: height * 0.04,),
+            SizedBox(
+              height: height * 0.12,
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: 0,
+                    bottom: 0,
+                    child: Row(
+                      children: [
+                        Text(
+                          "WORKOUTS",
+                          style: TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w300),
+                        ),
+                        IconButton(icon:Icon(Icons.info_outlined), onPressed: null)
+                      ],
+                    ),
+                  ),
+                  Positioned(right:0 ,child: Image.asset('assets/images/WorkOutPageImages/workOutBOt@2x.png',height: 100,width: 100,))
+                ],
               ),
-              Image.asset('assets/images/WorkOutPageImages/workOutBOt@2x.png',height: 80,width: 80,)
-            ],
-          ),
-          horizontalListView(height: height, width: width, workouts: hWorkouts),
-          verticalListView(height: height, width: width, workouts: vWorkouts),
-        ],
+            ),
+            horizontalListView(height: height, width: width, workouts: hWorkouts),
+            verticalListView(height: height, width: width, workouts: vWorkouts),
+          ],
+        ),
       ),
     );
   }
@@ -109,8 +124,10 @@ class verticalListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: height,
       child: ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemCount: workouts.length,
           itemBuilder: (BuildContext context, int index) {
@@ -177,7 +194,7 @@ class reps extends StatelessWidget {
           child: Center(
               child: Text(
                 numberofReps.toString(),
-                style: workoutsItemStyle,
+                style: repsStyle,
               )),
           color: Colors.blue.withOpacity(0.3),
         ),
@@ -213,10 +230,15 @@ class horizontalListView extends StatelessWidget {
             ));
             widgetList.addAll(workouts[index]
                 .workoutList
-                .map((e) => Row(
+                .map((e) =>
+                Row(
               children: [
                 Text(
-                  e,
+                  e.substring(0,3),
+                  style: repsStyle,
+                ),
+                Text(
+                  e.substring(3,e.length),
                   style: workoutsItemStyle,
                 ),
               ],
