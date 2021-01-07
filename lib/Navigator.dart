@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 
-const double bottomBarHeight = 122;
+const double bottomBarHeight = 60;
 const double appBarPercentage = 0.04;
 const double excludAappBarHeightPercentage = 0.96;
 
@@ -93,7 +93,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Stack ButtomBar(BuildContext context) {
     return Stack(overflow: Overflow.visible, children: [
       Padding(
-        padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 6.0, 0.0, 2.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

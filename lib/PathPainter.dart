@@ -23,7 +23,7 @@ class PathPainter extends CustomPainter {
       ..strokeWidth = 14.0;
 
     Paint dashPaint = Paint()
-      ..color = Colors.white.withOpacity(0.2)
+      ..color = Colors.white.withOpacity(0.3)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 14.0;
     //
@@ -110,7 +110,7 @@ class PathPainter extends CustomPainter {
           if (dots[index].status == Status.UNDONE ||
               dots[index].dotType == Type.MAKEUP || index == originalDotAmount -1) {
             canvas.drawPath(
-                //dashiline
+                //dashline
                 dashPath(
                   path,
                   dashArray: CircularIntervalList<double>(
