@@ -46,6 +46,7 @@ flutter:
    - assets/images/BottomNavi/
    - assets/images/RewardsPageImages/
    - assets/images/WorkOutPageImages/
+   - assets/images/ChallengesPageImages/
    - assets/images/200h.gif
    - assets/journeyMap.json
 
