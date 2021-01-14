@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:journey/PathPainter.dart';
-
+import 'package:journey/widgets/PathPainter.dart';
 import 'package:journey/models/map_dots.dart';
 
-const double appBarPercentage = 0.04;
+ const  double appBarPercentage = 0.04;
 
 class JourneyPage extends StatefulWidget {
   final List<Dot> dots;

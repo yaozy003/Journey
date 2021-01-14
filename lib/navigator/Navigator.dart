@@ -1,8 +1,8 @@
-import 'package:journey/ChallengesPage.dart';
-import 'package:journey/JourneyPage.dart';
-import 'package:journey/ProfilePage.dart';
-import 'package:journey/WorkOutPage.dart';
-import 'package:journey/RewardsPage.dart';
+import 'package:journey/Pages/ChallengesPage.dart';
+import 'package:journey/Pages/JourneyPage.dart';
+import 'package:journey/Pages/ProfilePage.dart';
+import 'package:journey/Pages/WorkOutPage.dart';
+import 'package:journey/Pages/RewardsPage.dart';
 import 'package:journey/models/map_dots.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';

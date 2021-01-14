@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:journey/Navigator.dart';
+import 'package:journey/Navigator/Navigator.dart';
 
 const buttonTextStyle =
     TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w700);
@@ -76,14 +76,11 @@ class _WorkoutPageState extends State<WorkoutPage> {
         child: ListView(
           children: [
             SizedBox(
-              height: height * 0.04,
-            ),
-            SizedBox(
-              height: height * 0.12,
+              height: height * 0.16,
               child: Stack(
                 children: [
                   Positioned(
-                    left: 0,
+                    left: 10,
                     bottom: 0,
                     child: Row(
                       children: [
@@ -95,16 +92,17 @@ class _WorkoutPageState extends State<WorkoutPage> {
                               fontWeight: FontWeight.w300),
                         ),
                         IconButton(
-                            icon: Icon(Icons.info_outlined), onPressed: null)
+                            icon: Icon(Icons.info_outline),onPressed: null)
                       ],
                     ),
                   ),
                   Positioned(
-                      right: 0,
+                      right: 20,
+                      bottom: 0,
                       child: Image.asset(
                         'assets/images/WorkOutPageImages/workOutBOt@2x.png',
-                        height: 100,
-                        width: 100,
+                        height: 140,
+                        width: 140,
                       ))
                 ],
               ),
@@ -141,7 +139,7 @@ class verticalListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
+      height: height * 1.06,
       child: ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
@@ -150,23 +148,127 @@ class verticalListView extends StatelessWidget {
             return workouts[index].premiumContent
                 ? Stack(
                     children: [
-                      vBox(height: height, workouts: workouts, index: index,opacity: 0.6),
-                      Container(
-                        height: height * 0.1,
-                          child:Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-
-                          children: [
-                            Image.asset('assets/images/WorkOutPageImages/lock@2x.png',width:26.2,height:30),
-                            Text("PREMIUM CONTENT",style: titleStyle,),
-                          ],
-                        ),
-                      ))
+                      vBox(
+                          height: height,
+                          workouts: workouts,
+                          index: index,
+                          opacity: 0.6),
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Container(
+                            height: height * 0.088,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.white.withOpacity(0.6),
+                            ),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                      'assets/images/WorkOutPageImages/lock@2x.png',
+                                      width: 26.2,
+                                      height: 30),
+                                  Text(
+                                    "PREMIUM CONTENT",
+                                    style: titleStyle,
+                                  ),
+                                ],
+                              ),
+                            )),
+                      )
                     ],
                   )
-                : vBox(height: height, workouts: workouts, index: index,opacity:1);
+                : vBox(
+                    height: height,
+                    workouts: workouts,
+                    index: index,
+                    opacity: 1);
+          }),
+    );
+  }
+}
+
+class horizontalListView extends StatelessWidget {
+  const horizontalListView({
+    Key key,
+    @required this.height,
+    @required this.width,
+    @required this.workouts,
+  }) : super(key: key);
+
+  final double height;
+  final double width;
+  final List<hWorkoutItem> workouts;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height * 0.3,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: workouts.length,
+          itemBuilder: (BuildContext context, int index) {
+            List<Widget> widgetList = [];
+            widgetList.add(Text(
+              workouts[index].title,
+              style: titleStyle,
+            ));
+            widgetList.addAll(workouts[index]
+                .workoutList
+                .map((e) => Row(
+              children: [
+                Text(
+                  e.substring(0, 3),
+                  style: repsStyle,
+                ),
+                Text(
+                  e.substring(3, e.length),
+                  style: workoutsItemStyle,
+                ),
+              ],
+            ))
+                .toList());
+            return SizedBox(
+              width: width * 0.6,
+              child: Container(
+                  margin: EdgeInsets.all(9.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(
+                          workouts[index].image,
+                          width: 60,
+                          height: 60,
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: widgetList),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          height: 32,
+                          width: double.infinity,
+                          child: Center(
+                            child: Text(
+                              'QUICK START',
+                              style: buttonTextStyle,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+            );
           }),
     );
   }
@@ -184,7 +286,7 @@ class vBox extends StatelessWidget {
   final double height;
   final List<vWorkoutItem> workouts;
   final int index;
-  final int opacity;
+  final double opacity;
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +297,7 @@ class vBox extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
             color: Colors.white.withOpacity(opacity),
           ),
-          margin: const EdgeInsets.all(6),
+          margin: const EdgeInsets.fromLTRB(6, 6, 6, 6),
           child: Row(
             children: [
               Padding(
@@ -258,89 +360,7 @@ class reps extends StatelessWidget {
   }
 }
 
-class horizontalListView extends StatelessWidget {
-  const horizontalListView({
-    Key key,
-    @required this.height,
-    @required this.width,
-    @required this.workouts,
-  }) : super(key: key);
 
-  final double height;
-  final double width;
-  final List<hWorkoutItem> workouts;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: height * 0.3,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: workouts.length,
-          itemBuilder: (BuildContext context, int index) {
-            List<Widget> widgetList = [];
-            widgetList.add(Text(
-              workouts[index].title,
-              style: titleStyle,
-            ));
-            widgetList.addAll(workouts[index]
-                .workoutList
-                .map((e) => Row(
-                      children: [
-                        Text(
-                          e.substring(0, 3),
-                          style: repsStyle,
-                        ),
-                        Text(
-                          e.substring(3, e.length),
-                          style: workoutsItemStyle,
-                        ),
-                      ],
-                    ))
-                .toList());
-            return SizedBox(
-              width: width * 0.6,
-              child: Container(
-                  margin: EdgeInsets.all(9.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset(
-                          workouts[index].image,
-                          width: 60,
-                          height: 60,
-                        ),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: widgetList),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          height: 32,
-                          width: double.infinity,
-                          child: Center(
-                            child: Text(
-                              'QUICK START',
-                              style: buttonTextStyle,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )),
-            );
-          }),
-    );
-  }
-}
 
 class hWorkoutItem {
   String image, title;

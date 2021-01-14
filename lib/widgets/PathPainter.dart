@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/map_dots.dart';
+import '../models/map_dots.dart';
 import 'package:path_drawing/path_drawing.dart';
 
 class PathPainter extends CustomPainter {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:journey/Navigator.dart';
+import 'package:journey/Navigator/Navigator.dart';
 
 void main() {
   runApp(MyApp());

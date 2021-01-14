@@ -4,7 +4,6 @@
 
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 
 MapDots mapDotsFromJson(String str) => MapDots.fromJson(json.decode(str));
 
