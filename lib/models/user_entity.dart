@@ -1,0 +1,56 @@
+import 'package:journey/generated/json/base/json_convert_content.dart';
+import 'package:journey/generated/json/base/json_field.dart';
+
+class UserEntity with JsonConvert<UserEntity> {
+	int id;
+	@JSONField(name: "first_name")
+	dynamic firstName;
+	@JSONField(name: "last_name")
+	dynamic lastName;
+	String dob;
+	dynamic gender;
+	@JSONField(name: "workout_frequency")
+	dynamic workoutFrequency;
+	String avatar;
+	@JSONField(name: "workouts_count")
+	int workoutsCount;
+	@JSONField(name: "reps_count")
+	int repsCount;
+	String cover;
+	@JSONField(name: "access_token")
+	String accessToken;
+	String email;
+	String status;
+	@JSONField(name: "subscription_status")
+	String subscriptionStatus;
+	@JSONField(name: "record_begin_day")
+	String recordBeginDay;
+	@JSONField(name: "record_end_day")
+	String recordEndDay;
+	@JSONField(name: "auto_record")
+	bool autoRecord;
+	@JSONField(name: "trainer_preference")
+	String trainerPreference;
+	@JSONField(name: "voice_preference")
+	String voicePreference;
+	@JSONField(name: "show_setting_tutorial")
+	bool showSettingTutorial;
+	@JSONField(name: "show_exercise_tutorial")
+	bool showExerciseTutorial;
+	@JSONField(name: "get_started")
+	bool getStarted;
+	@JSONField(name: "referral_code")
+	String referralCode;
+	@JSONField(name: "get_to_know_you")
+	bool getToKnowYou;
+	@JSONField(name: "user_type")
+	String userType;
+	@JSONField(name: "payment_type")
+	dynamic paymentType;
+	@JSONField(name: "trial_bonus_reward")
+	bool trialBonusReward;
+	@JSONField(name: "trial_expiration_time")
+	int trialExpirationTime;
+	@JSONField(name: "avatar_attached")
+	bool avatarAttached;
+}

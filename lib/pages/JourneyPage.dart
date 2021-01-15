@@ -11,7 +11,6 @@ class JourneyPage extends StatefulWidget {
   final List<Dot> dots;
   Dot currentLockDot;
   final int orginalDotAmount;
-
   JourneyPage(this.dots, this.currentLockDot, this.orginalDotAmount);
 
   @override

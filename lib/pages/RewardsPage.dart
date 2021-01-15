@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:journey/models/Product_List_entity.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:journey/network/products.dart';
 
 const double appBarPercentage = 0.04;
 const double BannerADHeight = 52.0;
 const coinsStyle =
-    TextStyle(fontSize: 36.0, color: Colors.white, fontWeight: FontWeight.w700);
+TextStyle(fontSize: 36.0, color: Colors.white, fontWeight: FontWeight.w700);
 const audStyle =
-    TextStyle(fontSize: 14.0, color: Colors.white, fontWeight: FontWeight.w300);
+TextStyle(fontSize: 14.0, color: Colors.white, fontWeight: FontWeight.w300);
 
 const progressTextStyle =
-    TextStyle(fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.w300);
+TextStyle(fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.w300);
 const progressTextStyle1 =
-    TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w700);
+TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w700);
 
 const buttonTextStyle =
-    TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w700);
+TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w700);
 
 const itemNameTextStyle =
-    TextStyle(fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.w500);
+TextStyle(fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.w500);
 const priceTextStyle =
-    TextStyle(fontSize: 18.0, color: Colors.blue, fontWeight: FontWeight.w700);
+TextStyle(fontSize: 18.0, color: Colors.blue, fontWeight: FontWeight.w700);
 const coinsTextStyle =
-    TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w700);
+TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w700);
 
 List<StoreItem> storeItems = [
   StoreItem("assets/images/WorkOutPageImages/workOutBOt@2x.png",
@@ -70,7 +73,14 @@ class _RewardsPageState extends State<RewardsPage> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     var f = NumberFormat.compact();
     return Container(
       color: Colors.white,
@@ -85,7 +95,10 @@ class _RewardsPageState extends State<RewardsPage> {
                 elevation: 0, //remove shadow.
                 title: Text(
                   "REWARDS",
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline1,
                 ),
               ),
             ),
@@ -110,7 +123,6 @@ class _RewardsPageState extends State<RewardsPage> {
                       onToggle: (index) {
                         setState(() {
                           _widgetIndex = index;
-                          print(_widgetIndex);
                         });
                       },
                     ),
@@ -122,311 +134,326 @@ class _RewardsPageState extends State<RewardsPage> {
                       color: Colors.red,
                       child: Text(
                         "BANNER AD",
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .headline6,
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                   _widgetIndex == 0
                       ? Expanded(
-                          child: ListView(
-                            children: <Widget>[
-                              CoinsContainer(),
-                              Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "YOUR PROGRESS",
-                                              style: progressTextStyle1,
-                                            ),
-                                            IconButton(
-                                              icon: Icon(
-                                                  Icons.info_outline_rounded),
-                                              onPressed: () {
-                                                //TODO:info Button function.
-                                              },
-                                            )
-                                          ],
-                                        ),
-                                        Text(
-                                          "Complete all of your daily goals,4 weeks in a row to reach the next tier and earn more rewards!",
-                                          style: progressTextStyle,
-                                        ),
-                                        Card(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(15.0))),
-                                          elevation: 2,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                30.0, 10.0, 30.0, 10.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(children: [
-                                                  RotatedBox(
-                                                    quarterTurns: 2,
-                                                    child:
-                                                        CircularPercentIndicator(
-                                                      radius: 65.0,
-                                                      lineWidth: 6.0,
-                                                      animation: true,
-                                                      animationDuration: 2000,
-                                                      percent: 1 / 3,
-                                                      center: RotatedBox(
-                                                        quarterTurns: 2,
-                                                        child: Text(
-                                                          "1/3",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 10.0),
-                                                        ),
-                                                      ),
-                                                      circularStrokeCap:
-                                                          CircularStrokeCap
-                                                              .round,
-                                                      progressColor:
-                                                          Colors.green,
-                                                      backgroundColor: Colors
-                                                          .grey
-                                                          .withOpacity(0.3),
-                                                    ),
+                    child: ListView(
+                      children: <Widget>[
+                        CoinsContainer(),
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "YOUR PROGRESS",
+                                        style: progressTextStyle1,
+                                      ),
+                                      IconButton(
+                                        icon: Icon(
+                                            Icons.info_outline_rounded),
+                                        onPressed: () {
+                                          //TODO:info Button function.
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                  Text(
+                                    "Complete all of your daily goals,4 weeks in a row to reach the next tier and earn more rewards!",
+                                    style: progressTextStyle,
+                                  ),
+                                  Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15.0))),
+                                    elevation: 2,
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          30.0, 10.0, 30.0, 10.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment
+                                            .spaceBetween,
+                                        children: [
+                                          Column(children: [
+                                            RotatedBox(
+                                              quarterTurns: 2,
+                                              child:
+                                              CircularPercentIndicator(
+                                                radius: 65.0,
+                                                lineWidth: 6.0,
+                                                animation: true,
+                                                animationDuration: 2000,
+                                                percent: 1 / 3,
+                                                center: RotatedBox(
+                                                  quarterTurns: 2,
+                                                  child: Text(
+                                                    "1/3",
+                                                    style: TextStyle(
+                                                        color:
+                                                        Colors.black,
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .bold,
+                                                        fontSize: 10.0),
                                                   ),
-                                                  Text("Daily Goal",
-                                                      style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 12.0)),
-                                                ]),
-                                                Column(children: [
-                                                  RotatedBox(
-                                                    quarterTurns: 2,
-                                                    child:
-                                                        CircularPercentIndicator(
-                                                      radius: 65.0,
-                                                      lineWidth: 6.0,
-                                                      animation: true,
-                                                      animationDuration: 2000,
-                                                      percent: 1 / 4,
-                                                      center: RotatedBox(
-                                                        quarterTurns: 2,
-                                                        child: Text(
-                                                          "1/4",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 10.0),
-                                                        ),
-                                                      ),
-                                                      circularStrokeCap:
-                                                          CircularStrokeCap
-                                                              .round,
-                                                      progressColor:
-                                                          Colors.yellow,
-                                                      backgroundColor: Colors
-                                                          .grey
-                                                          .withOpacity(0.3),
-                                                    ),
-                                                  ),
-                                                  Text("Weekly Goal",
-                                                      style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 12.0)),
-                                                ]),
-                                                Column(
-                                                  children: [
-                                                    RotatedBox(
-                                                      quarterTurns: 2,
-                                                      child:
-                                                          CircularPercentIndicator(
-                                                        radius: 65.0,
-                                                        lineWidth: 6.0,
-                                                        animation: true,
-                                                        animationDuration: 2000,
-                                                        percent: 1 / 3,
-                                                        center: RotatedBox(
-                                                          quarterTurns: 2,
-                                                          child: Text(
-                                                            "1/3",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 10.0),
-                                                          ),
-                                                        ),
-                                                        circularStrokeCap:
-                                                            CircularStrokeCap
-                                                                .round,
-                                                        progressColor:
-                                                            Colors.blue,
-                                                        backgroundColor: Colors
-                                                            .grey
-                                                            .withOpacity(0.3),
-                                                      ),
-                                                    ),
-                                                    Text("Current Tier",
-                                                        style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 12.0)),
-                                                  ],
                                                 ),
-                                              ],
+                                                circularStrokeCap:
+                                                CircularStrokeCap
+                                                    .round,
+                                                progressColor:
+                                                Colors.green,
+                                                backgroundColor: Colors
+                                                    .grey
+                                                    .withOpacity(0.3),
+                                              ),
                                             ),
+                                            Text("Daily Goal",
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 12.0)),
+                                          ]),
+                                          Column(children: [
+                                            RotatedBox(
+                                              quarterTurns: 2,
+                                              child:
+                                              CircularPercentIndicator(
+                                                radius: 65.0,
+                                                lineWidth: 6.0,
+                                                animation: true,
+                                                animationDuration: 2000,
+                                                percent: 1 / 4,
+                                                center: RotatedBox(
+                                                  quarterTurns: 2,
+                                                  child: Text(
+                                                    "1/4",
+                                                    style: TextStyle(
+                                                        color:
+                                                        Colors.black,
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .bold,
+                                                        fontSize: 10.0),
+                                                  ),
+                                                ),
+                                                circularStrokeCap:
+                                                CircularStrokeCap
+                                                    .round,
+                                                progressColor:
+                                                Colors.yellow,
+                                                backgroundColor: Colors
+                                                    .grey
+                                                    .withOpacity(0.3),
+                                              ),
+                                            ),
+                                            Text("Weekly Goal",
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 12.0)),
+                                          ]),
+                                          Column(
+                                            children: [
+                                              RotatedBox(
+                                                quarterTurns: 2,
+                                                child:
+                                                CircularPercentIndicator(
+                                                  radius: 65.0,
+                                                  lineWidth: 6.0,
+                                                  animation: true,
+                                                  animationDuration: 2000,
+                                                  percent: 1 / 3,
+                                                  center: RotatedBox(
+                                                    quarterTurns: 2,
+                                                    child: Text(
+                                                      "1/3",
+                                                      style: TextStyle(
+                                                          color: Colors
+                                                              .black,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold,
+                                                          fontSize: 10.0),
+                                                    ),
+                                                  ),
+                                                  circularStrokeCap:
+                                                  CircularStrokeCap
+                                                      .round,
+                                                  progressColor:
+                                                  Colors.blue,
+                                                  backgroundColor: Colors
+                                                      .grey
+                                                      .withOpacity(0.3),
+                                                ),
+                                              ),
+                                              Text("Current Tier",
+                                                  style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                      fontSize: 12.0)),
+                                            ],
                                           ),
-                                        ),
-                                        Text(
-                                          "FITBOTIC STORE",
-                                          style: progressTextStyle1,
-                                        ),
-                                        Text(
-                                          "Spend your discounted code on the Fitbotic Store",
-                                          style: progressTextStyle,
-                                        ),
-                                      ]),
-                                ),
-                              ),
-                              GridView.count(
-                                  padding: EdgeInsets.fromLTRB(3,0,3,20),
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing: 9,
-                                  crossAxisSpacing: 5,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  children: storeItems
-                                      .map((e) => Stack(
-                                              overflow: Overflow.visible,
-                                              children: [
-                                                Container(
-                                                  child: Card(
-                                                    elevation: 2,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    "FITBOTIC STORE",
+                                    style: progressTextStyle1,
+                                  ),
+                                  Text(
+                                    "Spend your discounted code on the Fitbotic Store",
+                                    style: progressTextStyle,
+                                  ),
+                                ]),
+                          ),
+                        ),
+                        FutureBuilder(
+                            future:_getProducts(),
+                            builder: (context, snapshot) {
+                              return SizedBox(
+                                height: height * 2,
+                                child: GridView.builder(
+                                  itemCount: snapshot.data.length,
+                                    padding: EdgeInsets.fromLTRB(3, 0, 3, 50),
+                                    // crossAxisCount: 2,
+                                    // mainAxisSpacing: 9,
+                                    // crossAxisSpacing: 5,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisSpacing: 10, mainAxisSpacing: 10, crossAxisCount: 2),
+                                itemBuilder:(BuildContext context, int index) {
+                                    return Stack(
+                                        overflow: Overflow.visible,
+                                        children: [
+                                          Container(
+                                            child: Card(
+                                              elevation: 2,
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.all(
+                                                    8.0),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment
+                                                      .center,
+                                                  children: [
+                                                    Image.network(
+                                                      snapshot.data[index].image,
+                                                      width: 90,
+                                                      height: 90,
+                                                    ),
+                                                    Text(
+                                                      snapshot.data[index].name,
+                                                      style:
+                                                      itemNameTextStyle,
+                                                      softWrap: false,
+                                                    ),
+                                                    Text(
+                                                      "\$" +
+                                                          snapshot.data[index].price
+                                                              .toString(),
+                                                      style:
+                                                      priceTextStyle,
+                                                      softWrap: false,
+                                                    ),
+                                                    Container(
+                                                      decoration:
+                                                      BoxDecoration(
+                                                        color: Colors.grey
+                                                            .withOpacity(
+                                                            0.3),
+                                                        borderRadius:
+                                                        BorderRadius
+                                                            .circular(
+                                                            16),
+                                                      ),
+                                                      height: 32,
+                                                      width:width,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                         children: [
                                                           Image.asset(
-                                                            e.image,
-                                                            width: 90,
-                                                            height: 90,
+                                                            "assets/images/JourneyPageImages/bot.png",
+                                                            width: 20,
+                                                            height: 20,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 5,
                                                           ),
                                                           Text(
-                                                            e.itemName,
+                                                            NumberFormat(
+                                                                '###,000',
+                                                                'en_US')
+                                                                .format(
+                                                              (double.parse(snapshot.data[index].price)*1000).round()).toString() +
+                                                                " Coins",
                                                             style:
-                                                                itemNameTextStyle,
-                                                            softWrap: false,
-                                                          ),
-                                                          Text(
-                                                            "\$" +
-                                                                e.price
-                                                                    .toString(),
-                                                            style:
-                                                                priceTextStyle,
-                                                            softWrap: false,
-                                                          ),
-                                                          Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Colors.grey
-                                                                  .withOpacity(
-                                                                      0.3),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          16),
-                                                            ),
-                                                            height: 32,
-                                                            width:
-                                                                double.infinity,
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Image.asset(
-                                                                  "assets/images/JourneyPageImages/bot.png",
-                                                                  width: 20,
-                                                                  height: 20,
-                                                                ),
-                                                                SizedBox(
-                                                                  width: 5,
-                                                                ),
-                                                                Text(
-                                                                  NumberFormat(
-                                                                              '###,000',
-                                                                              'en_US')
-                                                                          .format(
-                                                                              e.coins) +
-                                                                      " Coins",
-                                                                  style:
-                                                                      coinsTextStyle,
-                                                                  softWrap:
-                                                                      false,
-                                                                ),
-                                                              ],
-                                                            ),
+                                                            coinsTextStyle,
+                                                            softWrap:
+                                                            false,
                                                           ),
                                                         ],
                                                       ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
-                                                Positioned(
-                                                    bottom: -10,
-                                                    right: 10,
-                                                    child: GestureDetector(
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                          color: Colors.blue,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(24),
-                                                        ),
-                                                        child: Padding(
-                                                          padding: const EdgeInsets.all(6.0),
-                                                          child: Image.asset(
-                                                            "assets/images/RewardsPageImages/arrow-left@2x.png",
-                                                            width: 20,
-                                                            height: 20,
-                                                          ),
-                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                              bottom: -10,
+                                              right: 10,
+                                              child: GestureDetector(
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.blue,
+                                                      borderRadius:
+                                                      BorderRadius
+                                                          .circular(24),
+                                                    ),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets
+                                                          .all(6.0),
+                                                      child: Image.asset(
+                                                        "assets/images/RewardsPageImages/arrow-left@2x.png",
+                                                        width: 20,
+                                                        height: 20,
                                                       ),
-                                                        onTap: _gotoShoppingPage
-
-                                                    ))
-                                              ]))
-                                      .toList()),
-                            ],
-                          ),
-                        )
+                                                    ),
+                                                  ),
+                                                  onTap:() => launch(snapshot.data[index].url).catchError((error){
+                                                    print(error.toString() + 'cannot launch ' + snapshot.data[index].url);
+                                                  }),
+                                              ))
+                                        ]);
+                                },
+                                ),
+                              );
+                            }
+                        ),
+                      ],
+                    ),
+                  )
                       : Expanded(child: Container())
                 ],
               ),
@@ -434,14 +461,15 @@ class _RewardsPageState extends State<RewardsPage> {
       ),
     );
   }
-  _gotoShoppingPage() async {
-    const url = 'https://flutter.dev';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+
+
+  Future<List<ProductListEntity>> _getProducts() async {
+    return Products.getProductList().then((value) {
+      return Future.value(value);
+    });
   }
+
+
 }
 
 class CoinsContainer extends StatelessWidget {

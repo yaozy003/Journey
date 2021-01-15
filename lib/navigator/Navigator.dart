@@ -25,11 +25,10 @@ class _NavigatorPageState extends State<NavigatorPage> {
   int _currentIndex = 3;
 
   //Dots
-  List<Dot> _dots = [];
-  int originalDotsAmount = 0;
-  Dot currentLockDot;
-  String title = "";
-  bool journeySelected = false,
+  static List<Dot> _dots = [];
+  static int originalDotsAmount = 0;
+  static Dot currentLockDot;
+  static bool journeySelected = false,
       rewardsSelected = false,
       challengesSelected = false,
       profileSelected = false,
@@ -50,22 +49,26 @@ class _NavigatorPageState extends State<NavigatorPage> {
     }
   }
 
+  void _makeUpDots(){
+    originalDotsAmount = _dots.length;
+    //make dots amount is multiples of 12
+    int makeUpAmount = 12 - (_dots.length % 12);
+    for (int i = 0; i < makeUpAmount; i++) {
+      _dots.add(Dot(dotType: Type.MAKEUP));
+    }
+    if (_dots != null) {
+      findCurrentLockDot();
+    } else {
+      print("dots are null");
+    }
+  }
+
   void initState() {
     super.initState();
 
     this.loadJsonDataUsingFuture().then((d) => setState(() {
       _dots = d;
-      originalDotsAmount = _dots.length;
-      //make dots amount is multiples of 12
-      int makeUpAmount = 12 - (_dots.length % 12);
-      for (int i = 0; i < makeUpAmount; i++) {
-        _dots.add(Dot(dotType: Type.MAKEUP));
-      }
-      if (_dots != null) {
-        findCurrentLockDot();
-      } else {
-        print("dots are null");
-      }
+      _makeUpDots();
     }));
 
     //监听控制器滑动变化,改变底部tap
@@ -75,6 +78,8 @@ class _NavigatorPageState extends State<NavigatorPage> {
       });
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +131,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
                     challengesSelected = false;
                     profileSelected = false;
                     workOutSelected = false;
-                    title = "JOURNEY";
                     _currentIndex = 1;
                   });
                   _pageController.jumpToPage(1);
@@ -160,7 +164,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
                     challengesSelected = false;
                     profileSelected = false;
                     workOutSelected = false;
-                    title = "REWARDS";
                     _currentIndex = 2;
                   });
                   _pageController.jumpToPage(2);
@@ -195,7 +198,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
                     challengesSelected = true;
                     profileSelected = false;
                     workOutSelected = false;
-                    title = "CHALLENGES";
                     _currentIndex = 3;
                   });
                   _pageController.jumpToPage(3);
@@ -229,7 +231,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
                     challengesSelected = false;
                     profileSelected = true;
                     workOutSelected = false;
-                    title = "PROFILES";
                     _currentIndex = 4;
                   });
                   _pageController.jumpToPage(4);
@@ -264,7 +265,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
                     challengesSelected = false;
                     profileSelected = false;
                     workOutSelected = true;
-                    title = "";
                     _currentIndex = 0;
                   });
                   _pageController.jumpToPage(0);
