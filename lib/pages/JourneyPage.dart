@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:journey/widgets/PathPainter.dart';
@@ -31,26 +30,26 @@ class _JourneyPageState extends State<JourneyPage>
     super.initState();
     animatedSize == 20 ? 50 : 20;
     setState(() {});
-    // _animationController = AnimationController(
-    //     vsync: this,
-    //     duration: Duration(
-    //       milliseconds: 2000,
-    //     ),
-    //     value: 1.0);
-    // _doubleAnim = Tween(begin: 0.9, end: 1.10).animate(_animationController)
-    //   ..addStatusListener((status) {
-    //     if (status == AnimationStatus.completed) {
-    //       //动画在结束时停止的状态
-    //       _animationController.reverse(); //颠倒
-    //     } else if (status == AnimationStatus.dismissed) {
-    //       //动画在开始时就停止的状态
-    //       _animationController.forward(); //向前
-    //     }
-    //   })
-    //   ..addListener(() {
-    //     setState(() {});
-    //   });
-    // _animationController.forward();
+    _animationController = AnimationController(
+        vsync: this,
+        duration: Duration(
+          milliseconds: 2000,
+        ),
+        value: 1.0);
+    _doubleAnim = Tween(begin: 0.9, end: 1.10).animate(_animationController)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          //动画在结束时停止的状态
+          _animationController.reverse(); //颠倒
+        } else if (status == AnimationStatus.dismissed) {
+          //动画在开始时就停止的状态
+          _animationController.forward(); //向前
+        }
+      })
+      ..addListener(() {
+        //setState(() {});
+      });
+    _animationController.forward();
   }
 
   void dispose() {
@@ -87,285 +86,10 @@ class _JourneyPageState extends State<JourneyPage>
             child: Column(
               children: [
                 //试用通知
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
-                  child: ToggleSwitch(
-                    minWidth: 170.0,
-                    minHeight: 33.0,
-                    fontSize: 14.0,
-                    initialLabelIndex: _widgetIndex,
-                    cornerRadius: 24.0,
-                    activeBgColor: Colors.blue,
-                    activeFgColor: Colors.white,
-                    inactiveBgColor: Colors.white,
-                    inactiveFgColor: Colors.grey,
-                    labels: ['Journey Map', 'Activity'],
-                    onToggle: (index) {
-                      setState(() {
-                        _widgetIndex = index;
-                        print(_widgetIndex);
-                      });
-                      //TODO:linked to another page.
-                    },
-                  ),
-                ),
+                ToggleSwitcher(),
                 _widgetIndex == 0
-                    ? Expanded(
-                        child: SingleChildScrollView(
-                            child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                              Container(
-                                color: Colors.blue,
-                                width: width,
-                                height: 230,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: <Widget>[
-                                    Container(
-                                      //notification rect
-                                      width: width,
-                                      height: 28,
-                                      color: Colors.blue,
-                                      margin: EdgeInsets.only(top: 10),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                16.0, 10, 16.0, 0),
-                                            child: const Image(
-                                              image: AssetImage(
-                                                'assets/images/JourneyPageImages/Badge.png',
-                                              ),
-                                            ),
-                                          ),
-                                          Column(
-                                            //put two text on the top
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Text(
-                                                '{2} MORE GOALS TO EARN YOUR \$10 BONUS!',
-                                                textAlign: TextAlign.left,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText2,
-                                              ),
-                                              Text(
-                                                'You have {3} days left of your free trial.',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText2,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: Color(0xFF0A87BB),
-                                      ),
-                                      //Today's Goal
-
-                                      height: height * 0.18,
-                                      //Goal's box height
-                                      margin: EdgeInsets.all(15),
-                                      width: width,
-                                      child: Column(
-                                        //crossAxisAlignment: CrossAxisAlignment.stretch,
-                                        children: [
-                                          Expanded(
-                                              flex: 3,
-                                              child: Center(
-                                                child: Text(
-                                                  "TODAY'S GOAL",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1,
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                              )), //TODO:style
-                                          Expanded(
-                                            flex: 6,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10,
-                                                  top: 0,
-                                                  right: 10,
-                                                  bottom: 10),
-                                              child: Row(
-                                                children: [
-                                                  Expanded(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  15),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  15),
-                                                        ),
-                                                        color:
-                                                            Color(0xFF53ABCF),
-                                                      ),
-                                                      child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                          children: [
-                                                            Text(
-                                                              "COMPLETED",
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyText2,
-                                                            ),
-                                                            Text(
-                                                              currentLockDot
-                                                                      .reps
-                                                                      .toString() +
-                                                                  ' of ' +
-                                                                  currentLockDot
-                                                                      .reps
-                                                                      .toString(),
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline6,
-                                                            ),
-                                                            Text(
-                                                              'REPS',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline6,
-                                                            ),
-                                                          ]),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 2),
-                                                  Expanded(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  15),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  15),
-                                                        ),
-                                                        color:
-                                                            Color(0xFF53ABCF),
-                                                      ),
-                                                      child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                              "EARN",
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyText2,
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Image.asset(
-                                                                  'assets/images/JourneyPageImages/bot.png',
-                                                                  height: 27,
-                                                                  width: 27,
-                                                                ),
-                                                                SizedBox(
-                                                                    width: 10),
-                                                                Text(
-                                                                  (double.parse(currentLockDot
-                                                                              .reward[0]
-                                                                              .amount) *
-                                                                          100)
-                                                                      .round()
-                                                                      .toString(),
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .headline6,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            Text(
-                                                              'COINS',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline6,
-                                                            )
-                                                          ]),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    //TODO:Hide the notification when trial expires.
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: height * 3.5,
-                                color: Colors.blue,
-                                child: ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: _dots.length ~/ 12,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                        30,
-                                        15,
-                                        30,
-                                        0,
-                                      ),
-                                      child: Stack(
-                                        overflow: Overflow.visible,
-                                        children: thinkaboutlater(index),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ])),
-                      )
-                    : Expanded(
-                        child: Container(
-                          color: Colors.blue,
-                          width: double.infinity,
-                          child: Text(
-                            "Helo",
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
+                    ? MapView(width, context, height, currentLockDot, _dots)
+                    : ActivityView(),
                 //BottomNavigator(),
               ],
             ),
@@ -373,7 +97,294 @@ class _JourneyPageState extends State<JourneyPage>
         )));
   }
 
-  List<Widget> thinkaboutlater(int index) {
+  Padding ToggleSwitcher() {
+    return Padding(
+                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                child: ToggleSwitch(
+                  minWidth: 170.0,
+                  minHeight: 33.0,
+                  fontSize: 14.0,
+                  initialLabelIndex: _widgetIndex,
+                  cornerRadius: 24.0,
+                  activeBgColor: Colors.blue,
+                  activeFgColor: Colors.white,
+                  inactiveBgColor: Colors.white,
+                  inactiveFgColor: Colors.grey,
+                  labels: ['Journey Map', 'Activity'],
+                  onToggle: (index) {
+                    setState(() {
+                      _widgetIndex = index;
+                      print(_widgetIndex);
+                    });
+                    //TODO:linked to another page.
+                  },
+                ),
+              );
+  }
+
+  Expanded ActivityView() {
+    return Expanded(
+                      child: Container(
+                        color: Colors.blue,
+                        width: double.infinity,
+                        child: Text(
+                          "Helo",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    );
+  }
+
+  Expanded MapView(double width, BuildContext context, double height, Dot currentLockDot, List<Dot> _dots) {
+    return Expanded(
+                      child: SingleChildScrollView(
+                          child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                            Container(
+                              color: Colors.blue,
+                              width: width,
+                              height: 230,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                  Container(
+                                    //notification rect
+                                    width: width,
+                                    height: 28,
+                                    color: Colors.blue,
+                                    margin: EdgeInsets.only(top: 10),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              16.0, 10, 16.0, 0),
+                                          child: const Image(
+                                            image: AssetImage(
+                                              'assets/images/JourneyPageImages/Badge.png',
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          //put two text on the top
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              '{2} MORE GOALS TO EARN YOUR \$10 BONUS!',
+                                              textAlign: TextAlign.left,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2,
+                                            ),
+                                            Text(
+                                              'You have {3} days left of your free trial.',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Color(0xFF0A87BB),
+                                    ),
+                                    //Today's Goal
+
+                                    height: height * 0.18,
+                                    //Goal's box height
+                                    margin: EdgeInsets.all(15),
+                                    width: width,
+                                    child: Column(
+                                      //crossAxisAlignment: CrossAxisAlignment.stretch,
+                                      children: [
+                                        Expanded(
+                                            flex: 3,
+                                            child: Center(
+                                              child: Text(
+                                                "TODAY'S GOAL",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )), //TODO:style
+                                        Expanded(
+                                          flex: 6,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10,
+                                                top: 0,
+                                                right: 10,
+                                                bottom: 10),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                15),
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                15),
+                                                      ),
+                                                      color:
+                                                          Color(0xFF53ABCF),
+                                                    ),
+                                                    child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          Text(
+                                                            "COMPLETED",
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyText2,
+                                                          ),
+                                                          Text(
+                                                            currentLockDot
+                                                                    .reps
+                                                                    .toString() +
+                                                                ' of ' +
+                                                                currentLockDot
+                                                                    .reps
+                                                                    .toString(),
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline6,
+                                                          ),
+                                                          Text(
+                                                            'REPS',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline6,
+                                                          ),
+                                                        ]),
+                                                  ),
+                                                ),
+                                                SizedBox(width: 2),
+                                                Expanded(
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        topRight:
+                                                            Radius.circular(
+                                                                15),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                15),
+                                                      ),
+                                                      color:
+                                                          Color(0xFF53ABCF),
+                                                    ),
+                                                    child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            "EARN",
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyText2,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Image.asset(
+                                                                'assets/images/JourneyPageImages/bot.png',
+                                                                height: 27,
+                                                                width: 27,
+                                                              ),
+                                                              SizedBox(
+                                                                  width: 10),
+                                                              Text(
+                                                                (double.parse(currentLockDot
+                                                                            .reward[0]
+                                                                            .amount) *
+                                                                        100)
+                                                                    .round()
+                                                                    .toString(),
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .headline6,
+                                                              )
+                                                            ],
+                                                          ),
+                                                          Text(
+                                                            'COINS',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline6,
+                                                          )
+                                                        ]),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  //TODO:Hide the notification when trial expires.
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: height * 3.5,
+                              color: Colors.blue,
+                              child: ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: _dots.length ~/ 12,
+                                itemBuilder:
+                                    (BuildContext context, int index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                      30,
+                                      15,
+                                      30,
+                                      0,
+                                    ),
+                                    child: Stack(
+                                      overflow: Overflow.visible,
+                                      children: Draw(index),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ])),
+                    );
+  }
+
+  List<Widget> Draw(int index) {
     int originalDotsAmount = widget.orginalDotAmount;
     List<Dot> _dots = widget.dots;
     List<List> twoDList = List.generate(12, (_) => new List(2));
@@ -443,7 +454,7 @@ class _JourneyPageState extends State<JourneyPage>
         case Status.CURRENT_LOCK:
           {
             img = 'doingDot.png';
-            dotSize = dotSize; //_doubleAnim.value * dotSize;
+            dotSize = _doubleAnim.value * dotSize;
           }
           break;
         case Status.UNDONE:
@@ -464,7 +475,7 @@ class _JourneyPageState extends State<JourneyPage>
         case Status.CURRENT_LOCK:
           {
             img = 'doingDot.png';
-            dotSize = dotSize; //_doubleAnim.value * dotSize;
+            dotSize = _doubleAnim.value * dotSize;
           }
           break;
         case Status.LOCK:
@@ -489,7 +500,7 @@ class _JourneyPageState extends State<JourneyPage>
         case Status.CURRENT_LOCK:
           {
             img = 'doingDot.png';
-            dotSize = dotSize; //_doubleAnim.value * dotSize;
+            dotSize = _doubleAnim.value * dotSize;
           }
           break;
         case Status.LOCK:

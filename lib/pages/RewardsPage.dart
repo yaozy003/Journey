@@ -328,8 +328,15 @@ class _RewardsPageState extends State<RewardsPage> {
                         FutureBuilder(
                             future:_getProducts(),
                             builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.none ||
+    snapshot.data?.length == 0) {}
+   else if (snapshot.connectionState == ConnectionState.waiting) {
+    }
+   else if (snapshot.connectionState == ConnectionState.done){
+
+    }
                               return SizedBox(
-                                height: height * 2,
+                                height: height * 3  ,
                                 child: GridView.builder(
                                   itemCount: snapshot.data.length,
                                     padding: EdgeInsets.fromLTRB(3, 0, 3, 50),
