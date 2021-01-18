@@ -48,6 +48,8 @@ class _JourneyPageState extends State<JourneyPage>
       })
       ..addListener(() {
         //setState(() {});
+
+        
       });
     _animationController.forward();
   }
